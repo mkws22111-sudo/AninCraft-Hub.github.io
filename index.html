@@ -7,7 +7,7 @@
   <title>AninCraft — Моды для Minecraft</title>
   <meta
     name="description"
-    content="AninCraft готовится к запуску. Площадка для скачивания модов Minecraft откроется в течение недели."
+    content="AninCraft — платформа с модами, сборками и материалами по Minecraft."
   >
   <meta
     name="keywords"
@@ -17,7 +17,7 @@
   <meta property="og:title" content="AninCraft — Моды для Minecraft">
   <meta
     property="og:description"
-    content="AninCraft готовится к запуску. Площадка для скачивания модов Minecraft откроется в течение недели."
+    content="AninCraft — платформа с модами, сборками и материалами по Minecraft."
   >
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
@@ -92,6 +92,10 @@
         var(--bg);
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     body::before {
@@ -612,17 +616,6 @@
       margin-bottom: 17px;
     }
 
-    .coming-label {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(168,85,247,0.18);
-      color: var(--accent-3);
-      background: rgba(168,85,247,0.08);
-      font-size: 11px;
-      font-weight: 800;
-    }
 
     /* =========================
        BENEFITS
@@ -903,6 +896,119 @@
     }
 
     /* =========================
+       MODAL
+    ========================== */
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+
+    .modal.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(7, 4, 13, 0.68);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .modal-dialog {
+      position: relative;
+      width: min(100%, 560px);
+      padding: 30px;
+      border: 1px solid rgba(192, 132, 252, 0.24);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.16), transparent 34%),
+        linear-gradient(180deg, rgba(33, 19, 55, 0.92), rgba(16, 10, 28, 0.94));
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45), 0 0 70px rgba(124, 58, 237, 0.18);
+      transform: scale(0.95) translateY(8px);
+      transition: transform 0.28s ease;
+    }
+
+    .modal.is-open .modal-dialog {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 28px;
+      line-height: 1;
+      transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      transform: rotate(3deg);
+    }
+
+    .modal-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 14px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent), var(--accent-3));
+      box-shadow: 0 16px 38px rgba(124, 58, 237, 0.28);
+      font-size: 28px;
+    }
+
+    .modal-title {
+      margin-bottom: 24px;
+      text-align: center;
+      font-size: clamp(24px, 5vw, 32px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+    }
+
+    .modal-countdown {
+      max-width: none;
+    }
+
+    .modal-countdown .time-box {
+      padding: 16px 10px;
+    }
+
+    /* =========================
        RESPONSIVE
     ========================== */
 
@@ -1063,14 +1169,13 @@
 
           <div class="hero-actions">
 
-            <!-- ЗАМЕНИ ССЫЛКУ -->
-            <a
+            <button
               id="mods-link"
               class="btn btn-primary"
-              href="https://example.com"
+              type="button"
               data-i18n="hero.modsButton"
               data-i18n-aria-label="hero.modsButtonAria"
-            ></a>
+            ></button>
 
             <a
               class="btn btn-secondary"
@@ -1155,8 +1260,6 @@
             <h3 data-i18n="features.mods.title"></h3>
             <p data-i18n="features.mods.text"></p>
 
-            <span class="coming-label" data-i18n="common.soon"></span>
-
           </article>
 
           <article class="feature-card reveal">
@@ -1170,8 +1273,6 @@
 
             <h3 data-i18n="features.modpacks.title"></h3>
             <p data-i18n="features.modpacks.text"></p>
-
-            <span class="coming-label" data-i18n="common.soon"></span>
 
           </article>
 
@@ -1187,8 +1288,6 @@
             <h3 data-i18n="features.guides.title"></h3>
             <p data-i18n="features.guides.text"></p>
 
-            <span class="coming-label" data-i18n="common.soon"></span>
-
           </article>
 
           <article class="feature-card reveal">
@@ -1203,8 +1302,6 @@
 
             <h3 data-i18n="features.news.title"></h3>
             <p data-i18n="features.news.text"></p>
-
-            <span class="coming-label" data-i18n="common.soon"></span>
 
           </article>
 
@@ -1332,17 +1429,7 @@
 
           <div class="launch-content">
 
-            <div class="section-label" data-i18n="launch.label"></div>
-
-            <h2
-              class="section-title"
-              data-i18n="launch.title"
-            ></h2>
-
-            <p
-              class="launch-description"
-              data-i18n="launch.description"
-            ></p>
+            <h2 class="sr-only">AninCraft</h2>
 
             <div class="countdown" id="countdown" aria-live="polite">
 
@@ -1473,6 +1560,54 @@
   </main>
 
   <!-- =========================
+       MODAL
+  ========================== -->
+
+  <div
+    class="modal"
+    id="site-modal"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+    <div class="modal-backdrop" data-modal-close="true"></div>
+
+    <div class="modal-dialog" role="document">
+      <button
+        class="modal-close"
+        id="modal-close"
+        type="button"
+        aria-label="Закрыть"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+
+      <div class="modal-icon" aria-hidden="true">⛏️</div>
+      <h2 class="modal-title" id="modal-title">AninCraft</h2>
+
+      <div class="modal-countdown countdown" id="modal-countdown" aria-live="polite">
+        <div class="time-box">
+          <span class="time-number" id="modal-days">00</span>
+          <span class="time-label" data-i18n="time.days"></span>
+        </div>
+        <div class="time-box">
+          <span class="time-number" id="modal-hours">00</span>
+          <span class="time-label" data-i18n="time.hours"></span>
+        </div>
+        <div class="time-box">
+          <span class="time-number" id="modal-minutes">00</span>
+          <span class="time-label" data-i18n="time.minutes"></span>
+        </div>
+        <div class="time-box">
+          <span class="time-number" id="modal-seconds">00</span>
+          <span class="time-label" data-i18n="time.seconds"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================
        FOOTER
   ========================== -->
 
@@ -1486,7 +1621,7 @@
 
           <strong>AninCraft</strong>
 
-          <span data-i18n="footer.status"></span>
+          <span>AninCraft</span>
 
         </div>
 
@@ -1528,7 +1663,7 @@
     const translations = {
       ru: {
         "meta.title": "AninCraft — Моды для Minecraft",
-        "meta.description": "AninCraft готовится к запуску. Площадка для скачивания модов Minecraft откроется в течение недели.",
+        "meta.description": "AninCraft — платформа с модами, сборками и материалами по Minecraft.",
         "meta.keywords": "AninCraft, Minecraft, моды Minecraft, Minecraft mods, сборки Minecraft",
 
         "header.logoAria": "AninCraft",
@@ -1536,47 +1671,47 @@
         "nav.about": "О проекте",
         "nav.features": "Возможности",
         "nav.faq": "FAQ",
-        "nav.launch": "Скоро",
+        "nav.launch": "Таймер",
 
-        "hero.badge": "⏳ Открытие в течение недели",
-        "hero.title": "AninCraft уже скоро!",
-        "hero.description": "Площадка для скачивания модов Minecraft откроется в течение недели. Готовься к новым приключениям, модификациям и интересным сборкам!",
-        "hero.modsButton": "Перейти на сайт модов · скоро",
-        "hero.modsButtonAria": "Перейти на будущий сайт модов AninCraft — сайт откроется в течение недели",
+        "hero.badge": "AninCraft",
+        "hero.title": "Моды и материалы для Minecraft",
+        "hero.description": "Удобная платформа для поиска модов, сборок, инструкций и материалов по Minecraft.",
+        "hero.modsButton": "Перейти на сайт",
+        "hero.modsButtonAria": "Перейти на сайт AninCraft",
         "hero.moreButton": "Узнать больше",
-        "hero.moreButtonAria": "Узнать больше о будущем AninCraft",
+        "hero.moreButtonAria": "Узнать больше о возможностях AninCraft",
 
-        "features.label": "Что готовится",
-        "features.title": "Что будет на AninCraft",
-        "features.description": "Основные разделы будущей площадки уже планируются и готовятся к запуску.",
+        "features.label": "Возможности",
+        "features.title": "Всё необходимое для Minecraft",
+        "features.description": "Основные разделы платформы для удобного поиска и использования материалов Minecraft.",
 
         "features.mods.title": "Моды",
-        "features.mods.text": "Подборка модов Minecraft, которая будет доступна после запуска площадки.",
+        "features.mods.text": "Подборка модов Minecraft с удобным просмотром и поиском.",
         "features.modpacks.title": "Сборки",
-        "features.modpacks.text": "Готовые наборы модов для разных стилей игры будут добавляться постепенно.",
+        "features.modpacks.text": "Готовые наборы модов для разных стилей игры и задач.",
         "features.guides.title": "Инструкции",
-        "features.guides.text": "Понятные руководства помогут разбираться с установкой и настройкой модов.",
+        "features.guides.text": "Понятные руководства по установке и настройке модов.",
         "features.news.title": "Новости",
-        "features.news.text": "Обновления проекта, новые релизы и важные события будут собираться в одном месте.",
+        "features.news.text": "Новости, релизы и полезные обновления Minecraft в одном месте.",
 
-        "common.soon": "Скоро",
+        "common.soon": "Подробнее",
 
         "benefits.label": "Почему проект",
         "benefits.title": "Почему AninCraft",
-        "benefits.description": "Проект создаётся с упором на простоту, удобство и комфортное использование.",
+        "benefits.description": "Простой интерфейс, быстрый поиск и удобный просмотр материалов.",
 
         "benefits.free.title": "Бесплатно",
-        "benefits.free.text": "Основная идея площадки — сделать будущий доступ к материалам максимально простым.",
+        "benefits.free.text": "Свободный доступ к основной информации и материалам платформы.",
         "benefits.safe.title": "Безопасно",
-        "benefits.safe.text": "Проект планируется с вниманием к качеству материалов и понятной информации о них.",
+        "benefits.safe.text": "Понятная информация о материалах и аккуратная структура каталога.",
         "benefits.fast.title": "Быстро",
-        "benefits.fast.text": "Страницы будут создаваться с учётом быстрой загрузки и удобного просмотра.",
+        "benefits.fast.text": "Быстрая загрузка страниц и удобный просмотр на любых устройствах.",
         "benefits.updates.title": "Регулярные обновления",
-        "benefits.updates.text": "После запуска новые материалы и обновления будут появляться постепенно.",
+        "benefits.updates.text": "Новые материалы и обновления каталога появляются регулярно.",
 
-        "launch.label": "До запуска",
-        "launch.title": "Открытие — в течение недели",
-        "launch.description": "AninCraft откроется в течение недели. Следи за обновлениями — будущая площадка уже готовится к запуску!",
+        "launch.label": "",
+        "launch.title": "",
+        "launch.description": "",
 
         "time.days": "дней",
         "time.hours": "часов",
@@ -1584,38 +1719,38 @@
         "time.seconds": "секунд",
 
         "ads.label": "Реклама",
-        "ads.topHint": "Рекламный блок будет подключён перед запуском.",
+        "ads.topHint": "Рекламный блок.",
         "ads.middleHint": "Место для адаптивного рекламного блока.",
-        "ads.bottomHint": "Рекламный блок для будущей площадки.",
+        "ads.bottomHint": "Рекламный блок.",
 
         "faq.label": "FAQ",
         "faq.title": "Частые вопросы",
-        "faq.description": "Коротко о будущем запуске AninCraft.",
+        "faq.description": "Ответы на частые вопросы об AninCraft.",
 
-        "faq.q1": "Когда откроется AninCraft?",
-        "faq.a1": "Сайт модов AninCraft откроется в течение недели. Точная дата запуска будет объявлена ближе к открытию.",
+        "faq.q1": "Что такое AninCraft?",
+        "faq.a1": "AninCraft — платформа с модами, сборками, инструкциями и другими материалами по Minecraft.",
 
         "faq.q2": "Это будет бесплатно?",
-        "faq.a2": "Проект готовится с расчётом на бесплатный доступ к основной информации и материалам. Окончательные детали будут опубликованы после запуска.",
+        "faq.a2": "Основная информация и материалы платформы доступны бесплатно.",
 
         "faq.q3": "Какие моды будут?",
-        "faq.a3": "В будущем планируется добавлять разные категории модов Minecraft, а также сборки и полезные материалы по установке.",
+        "faq.a3": "На платформе представлены моды, сборки и инструкции по Minecraft.",
 
-        "faq.q4": "Как я узнаю о запуске?",
-        "faq.a4": "Следи за обновлениями AninCraft. После запуска ссылка на будущую площадку будет заменена на настоящий адрес сайта.",
+        "faq.q4": "Как пользоваться сайтом?",
+        "faq.a4": "Выберите нужный раздел и используйте поиск для быстрого перехода к материалам.",
 
-        "footer.status": "Сайт модов откроется в течение недели",
+        "footer.status": "AninCraft",
         "footer.copy": "© 2026 AninCraft",
         "footer.privacy": "Политика конфиденциальности",
         "footer.privacyAria": "Политика конфиденциальности AninCraft",
         "footer.contact": "Контакт",
         "footer.contactAria": "Связаться с AninCraft по электронной почте",
-        "footer.bottom": "Открытие — в течение недели."
+        "footer.bottom": "AninCraft — Minecraft."
       },
 
       en: {
         "meta.title": "AninCraft — Minecraft Mods",
-        "meta.description": "AninCraft is preparing to launch. The Minecraft mods platform will open within a week.",
+        "meta.description": "AninCraft — a platform for Minecraft mods, modpacks, and resources.",
         "meta.keywords": "AninCraft, Minecraft, Minecraft mods, Minecraft modpacks, Minecraft guides",
 
         "header.logoAria": "AninCraft",
@@ -1623,47 +1758,47 @@
         "nav.about": "About",
         "nav.features": "Features",
         "nav.faq": "FAQ",
-        "nav.launch": "Coming soon",
+        "nav.launch": "Timer",
 
-        "hero.badge": "⏳ Opening within a week",
-        "hero.title": "AninCraft is coming soon!",
-        "hero.description": "The Minecraft mods platform will open within a week. Get ready for new adventures, mods, and exciting modpacks!",
-        "hero.modsButton": "Go to the mods site · soon",
-        "hero.modsButtonAria": "Go to the future AninCraft mods website — opening within a week",
+        "hero.badge": "AninCraft",
+        "hero.title": "Minecraft mods and resources",
+        "hero.description": "A convenient platform for finding Minecraft mods, modpacks, guides, and resources.",
+        "hero.modsButton": "Go to the site",
+        "hero.modsButtonAria": "Go to the AninCraft website",
         "hero.moreButton": "Learn more",
-        "hero.moreButtonAria": "Learn more about the upcoming AninCraft project",
+        "hero.moreButtonAria": "Learn more about AninCraft features",
 
-        "features.label": "What's coming",
-        "features.title": "What will be on AninCraft",
-        "features.description": "The main sections of the future platform are already being planned and prepared for launch.",
+        "features.label": "Features",
+        "features.title": "Everything you need for Minecraft",
+        "features.description": "Main platform sections for easy Minecraft content discovery and use.",
 
         "features.mods.title": "Mods",
-        "features.mods.text": "A collection of Minecraft mods that will become available after the platform launches.",
+        "features.mods.text": "A collection of Minecraft mods with convenient browsing and search.",
         "features.modpacks.title": "Modpacks",
-        "features.modpacks.text": "Ready-made mod combinations for different play styles will be added over time.",
+        "features.modpacks.text": "Ready-made mod combinations for different play styles and goals.",
         "features.guides.title": "Guides",
-        "features.guides.text": "Clear guides will help with installing and configuring mods.",
+        "features.guides.text": "Clear guides for installing and configuring mods.",
         "features.news.title": "News",
-        "features.news.text": "Project updates, new releases, and important announcements will be collected in one place.",
+        "features.news.text": "News, releases, and useful Minecraft updates in one place.",
 
-        "common.soon": "Soon",
+        "common.soon": "Details",
 
         "benefits.label": "Why the project",
         "benefits.title": "Why AninCraft",
-        "benefits.description": "The project is being built around simplicity, convenience, and a comfortable user experience.",
+        "benefits.description": "A simple interface, fast search, and convenient content browsing.",
 
         "benefits.free.title": "Free",
-        "benefits.free.text": "The main idea is to keep future access to the platform's materials as simple as possible.",
+        "benefits.free.text": "Free access to the platform's main information and materials.",
         "benefits.safe.title": "Safe",
-        "benefits.safe.text": "The project is being prepared with attention to content quality and clear information.",
+        "benefits.safe.text": "Clear information and a well-structured content catalog.",
         "benefits.fast.title": "Fast",
-        "benefits.fast.text": "The future pages will be designed with fast loading and comfortable browsing in mind.",
+        "benefits.fast.text": "Fast page loading and comfortable browsing on every device.",
         "benefits.updates.title": "Regular updates",
-        "benefits.updates.text": "After launch, new materials and updates will gradually be added.",
+        "benefits.updates.text": "New catalog materials and updates are added regularly.",
 
-        "launch.label": "Before launch",
-        "launch.title": "Opening — within a week",
-        "launch.description": "AninCraft will open within a week. Follow the updates — the future platform is already being prepared for launch!",
+        "launch.label": "",
+        "launch.title": "",
+        "launch.description": "",
 
         "time.days": "days",
         "time.hours": "hours",
@@ -1671,33 +1806,33 @@
         "time.seconds": "seconds",
 
         "ads.label": "Advertisement",
-        "ads.topHint": "This ad space will be connected before launch.",
+        "ads.topHint": "Advertisement.",
         "ads.middleHint": "Space reserved for a responsive ad unit.",
-        "ads.bottomHint": "Advertisement space for the future platform.",
+        "ads.bottomHint": "Advertisement.",
 
         "faq.label": "FAQ",
         "faq.title": "Frequently asked questions",
-        "faq.description": "A few quick answers about the upcoming AninCraft launch.",
+        "faq.description": "Answers to common AninCraft questions.",
 
-        "faq.q1": "When will AninCraft launch?",
-        "faq.a1": "The AninCraft mods site will open within a week. The exact launch date will be announced closer to the opening.",
+        "faq.q1": "What is AninCraft?",
+        "faq.a1": "AninCraft is a platform for Minecraft mods, modpacks, guides, and other resources.",
 
         "faq.q2": "Will it be free?",
-        "faq.a2": "The project is being prepared with free access to the main information and materials in mind. Final details will be published after launch.",
+        "faq.a2": "The platform's main information and materials are available for free.",
 
         "faq.q3": "What kind of mods will be available?",
-        "faq.a3": "The future platform is planned to include different Minecraft mod categories, modpacks, and useful installation guides.",
+        "faq.a3": "The platform features Minecraft mods, modpacks, and installation guides.",
 
-        "faq.q4": "How will I know when it launches?",
-        "faq.a4": "Follow AninCraft updates. After launch, the link to the future platform will be replaced with the real website address.",
+        "faq.q4": "How do I use the site?",
+        "faq.a4": "Choose a section and use search to quickly find the materials you need.",
 
-        "footer.status": "The mods site opens within a week",
+        "footer.status": "AninCraft",
         "footer.copy": "© 2026 AninCraft",
         "footer.privacy": "Privacy policy",
         "footer.privacyAria": "AninCraft privacy policy",
         "footer.contact": "Contact",
         "footer.contactAria": "Contact AninCraft by email",
-        "footer.bottom": "Opening — within a week."
+        "footer.bottom": "AninCraft — Minecraft."
       }
     };
 
@@ -1857,49 +1992,105 @@
 
     /*
       ============================================================
-      COUNTDOWN
+      COUNTDOWN — 14 DAYS FROM FIRST VISIT
       ============================================================
     */
 
-    /*
-      ВАЖНО:
-      Пользователь указал 1 сентября 2026 года.
-      После наступления этой даты таймер будет показывать нули.
+    const COUNTDOWN_STORAGE_KEY = "anincraft_countdown_start_v1";
+    const COUNTDOWN_DURATION_MS = 14 * 24 * 60 * 60 * 1000;
 
-      Для нового запуска просто замени значение TARGET_DATE.
-    */
-    const TARGET_DATE = new Date("2026-09-01T00:00:00");
+    function getCountdownStart() {
+      const saved = Number(localStorage.getItem(COUNTDOWN_STORAGE_KEY));
 
-    function updateCountdown() {
-      const now = new Date();
-      const difference = TARGET_DATE.getTime() - now.getTime();
-
-      let days = 0;
-      let hours = 0;
-      let minutes = 0;
-      let seconds = 0;
-
-      if (difference > 0) {
-        const totalSeconds = Math.floor(difference / 1000);
-
-        days = Math.floor(totalSeconds / 86400);
-        hours = Math.floor((totalSeconds % 86400) / 3600);
-        minutes = Math.floor((totalSeconds % 3600) / 60);
-        seconds = totalSeconds % 60;
+      if (Number.isFinite(saved) && saved > 0) {
+        return saved;
       }
 
-      document.getElementById("days").textContent =
-        String(days).padStart(2, "0");
-
-      document.getElementById("hours").textContent =
-        String(hours).padStart(2, "0");
-
-      document.getElementById("minutes").textContent =
-        String(minutes).padStart(2, "0");
-
-      document.getElementById("seconds").textContent =
-        String(seconds).padStart(2, "0");
+      const start = Date.now();
+      localStorage.setItem(COUNTDOWN_STORAGE_KEY, String(start));
+      return start;
     }
+
+    const countdownStart = getCountdownStart();
+    const countdownEnd = countdownStart + COUNTDOWN_DURATION_MS;
+
+    const countdownElements = {
+      main: {
+        days: document.getElementById("days"),
+        hours: document.getElementById("hours"),
+        minutes: document.getElementById("minutes"),
+        seconds: document.getElementById("seconds")
+      },
+      modal: {
+        days: document.getElementById("modal-days"),
+        hours: document.getElementById("modal-hours"),
+        minutes: document.getElementById("modal-minutes"),
+        seconds: document.getElementById("modal-seconds")
+      }
+    };
+
+    function formatCountdown(targets, difference) {
+      const totalSeconds = Math.max(0, Math.floor(difference / 1000));
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      targets.days.textContent = String(days).padStart(2, "0");
+      targets.hours.textContent = String(hours).padStart(2, "0");
+      targets.minutes.textContent = String(minutes).padStart(2, "0");
+      targets.seconds.textContent = String(seconds).padStart(2, "0");
+    }
+
+    function updateCountdown() {
+      const difference = Math.max(0, countdownEnd - Date.now());
+
+      formatCountdown(countdownElements.main, difference);
+      formatCountdown(countdownElements.modal, difference);
+    }
+
+    /*
+      ============================================================
+      MODAL
+      ============================================================
+    */
+
+    const modal = document.getElementById("site-modal");
+    const modalClose = document.getElementById("modal-close");
+    const modsLink = document.getElementById("mods-link");
+
+    function openModal() {
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      modalClose.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      modsLink.focus();
+    }
+
+    modsLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      openModal();
+    });
+
+    modalClose.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target.matches("[data-modal-close='true']")) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) {
+        closeModal();
+      }
+    });
 
     /*
       ============================================================
@@ -1966,29 +2157,6 @@
       initRevealAnimation();
     });
 
-    /*
-      ============================================================
-      БУДУЩИЕ ДОПОЛНЕНИЯ
-      ============================================================
-
-      <!-- ДОБАВЬ ПЕРЕВОД ЗДЕСЬ -->
-
-      При добавлении нового текста:
-      1. Добавь ключ в translations.ru.
-      2. Добавь ТОЧНО ТАКОЙ ЖЕ ключ в translations.en.
-      3. В HTML используй data-i18n="твой.ключ".
-
-      Пример:
-
-      ru:
-        "new.text": "Новый текст",
-
-      en:
-        "new.text": "New text"
-
-      HTML:
-        <span data-i18n="new.text"></span>
-    */
   </script>
 
 </body>
