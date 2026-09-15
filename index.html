@@ -1,1304 +1,1995 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+  <title>AninCraft — Моды для Minecraft</title>
+  <meta
+    name="description"
+    content="AninCraft готовится к запуску. Площадка для скачивания модов Minecraft откроется в течение недели."
+  >
+  <meta
+    name="keywords"
+    content="AninCraft, Minecraft, моды Minecraft, Minecraft mods, сборки Minecraft"
+  >
 
-    <meta
-        name="description"
-        content="AninCraft — будущий сайт с модами, сборками, инструкциями и новостями для Minecraft."
-    >
+  <meta property="og:title" content="AninCraft — Моды для Minecraft">
+  <meta
+    property="og:description"
+    content="AninCraft готовится к запуску. Площадка для скачивания модов Minecraft откроется в течение недели."
+  >
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
 
-    <meta
-        name="keywords"
-        content="Minecraft, моды Minecraft, моды, модпаки, сборки Minecraft, AninCraft"
-    >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
-    <meta
-        name="author"
-        content="AninCraft"
-    >
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237c3aed'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-size='36'%3E%E2%9B%8F%EF%B8%8F%3C/text%3E%3C/svg%3E"
+  >
 
-    <meta
-        name="mitgo-verification"
-        content="f043838a-9b2b-43c2-a2a4-bd483a25b78d"
-    >
+  <style>
+    :root {
+      --bg: #0f0a1a;
+      --bg-soft: #150b26;
+      --bg-card: rgba(26, 15, 46, 0.82);
+      --bg-card-strong: #1a0f2e;
 
-    <meta
-        property="og:title"
-        content="AninCraft — Моды для Minecraft"
-    >
+      --accent: #a855f7;
+      --accent-2: #8b5cf6;
+      --accent-3: #c084fc;
+      --accent-dark: #7c3aed;
 
-    <meta
-        property="og:description"
-        content="Будущий Minecraft-портал с модами, сборками, инструкциями и новостями."
-    >
+      --blue-purple: #6366f1;
 
-    <meta
-        property="og:type"
-        content="website"
-    >
+      --text: #e9e6f2;
+      --text-muted: #b8b0cc;
+      --text-soft: #9289a8;
 
-    <title>AninCraft — Моды для Minecraft</title>
+      --border: rgba(192, 132, 252, 0.16);
+      --border-hover: rgba(192, 132, 252, 0.32);
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+      --success: #8ce99a;
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+      --shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3);
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+      --shadow-accent:
+        0 15px 50px rgba(124, 58, 237, 0.2);
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 26px;
+
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(124, 58, 237, 0.16), transparent 32%),
+        radial-gradient(circle at 85% 20%, rgba(168, 85, 247, 0.12), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.09), transparent 35%),
+        var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.55;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--accent-3);
+      background: rgba(124, 58, 237, 0.09);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .section-description {
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(192, 132, 252, 0.1);
+      background: rgba(15, 10, 26, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent), var(--accent-3));
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+      font-size: 19px;
+    }
+
+    .logo-text {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      background: linear-gradient(90deg, #fff, var(--accent-3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .main-nav {
+      display: none;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+    }
+
+    .language-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 4px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .lang-button {
+      border: 0;
+      background: transparent;
+      color: var(--text-soft);
+      border-radius: 7px;
+      padding: 7px 9px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+      transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .lang-button:hover {
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .lang-button.active {
+      color: #fff;
+      background: rgba(168, 85, 247, 0.2);
+      box-shadow: inset 0 0 0 1px rgba(192, 132, 252, 0.15);
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 74px);
+      display: flex;
+      align-items: center;
+      padding: 90px 0 80px;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(5px);
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 500px;
+      height: 500px;
+      top: -250px;
+      left: -200px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.25), transparent 68%);
+    }
+
+    .hero::after {
+      width: 600px;
+      height: 600px;
+      right: -300px;
+      bottom: -300px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.17), transparent 68%);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 52px;
+      align-items: center;
+    }
+
+    .hero-content {
+      max-width: 780px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 23px;
+      padding: 9px 14px;
+      border: 1px solid rgba(192, 132, 252, 0.25);
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.11);
+      color: var(--accent-3);
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 8px 30px rgba(124, 58, 237, 0.1);
+    }
+
+    .hero h1 {
+      max-width: 880px;
+      font-size: clamp(44px, 8vw, 82px);
+      line-height: 0.99;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+
+    .hero-title-gradient {
+      background:
+        linear-gradient(
+          100deg,
+          #ffffff 5%,
+          #e9d5ff 34%,
+          #c084fc 61%,
+          #818cf8 100%
+        );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 760px;
+      margin-bottom: 32px;
+      color: var(--text-muted);
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      min-height: 49px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 18px;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+      box-shadow: 0 14px 35px rgba(124, 58, 237, 0.28);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 18px 42px rgba(124, 58, 237, 0.38);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background: rgba(255,255,255,0.045);
+    }
+
+    .hero-preview {
+      position: relative;
+      min-height: 330px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .preview-glow {
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      background: radial-gradient(
+        circle,
+        rgba(168, 85, 247, 0.23),
+        rgba(124, 58, 237, 0.06) 48%,
+        transparent 70%
+      );
+      filter: blur(4px);
+    }
+
+    .preview-card {
+      position: relative;
+      width: min(100%, 420px);
+      min-height: 290px;
+      padding: 24px;
+      border: 1px solid rgba(192, 132, 252, 0.2);
+      border-radius: 26px;
+      background:
+        linear-gradient(145deg, rgba(168, 85, 247, 0.12), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015)),
+        rgba(21, 11, 38, 0.78);
+      box-shadow:
+        var(--shadow),
+        0 20px 80px rgba(124, 58, 237, 0.18);
+      overflow: hidden;
+    }
+
+    .preview-card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -60px;
+      top: -70px;
+      border-radius: 50%;
+      background: rgba(168, 85, 247, 0.12);
+      filter: blur(15px);
+    }
+
+    .preview-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .preview-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .preview-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+    }
+
+    .preview-status {
+      width: 68px;
+      height: 9px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--blue-purple));
+      opacity: 0.72;
+    }
+
+    .preview-main-icon {
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      border-radius: 25px;
+      background:
+        linear-gradient(135deg, rgba(124,58,237,0.85), rgba(192,132,252,0.38));
+      border: 1px solid rgba(255,255,255,0.13);
+      box-shadow: 0 20px 40px rgba(124, 58, 237, 0.28);
+      font-size: 47px;
+    }
+
+    .preview-line {
+      height: 10px;
+      margin: 9px auto;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .preview-line.large {
+      width: 65%;
+      background: linear-gradient(90deg, rgba(192,132,252,0.35), rgba(255,255,255,0.06));
+    }
+
+    .preview-line.small {
+      width: 42%;
+    }
+
+    .preview-pill-row {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 22px;
+    }
+
+    .preview-pill {
+      width: 53px;
+      height: 19px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    /* =========================
+       FEATURES
+    ========================== */
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .feature-card,
+    .benefit-card {
+      position: relative;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background:
+        linear-gradient(150deg, rgba(168,85,247,0.055), transparent 42%),
+        rgba(255,255,255,0.018);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.13);
+      overflow: hidden;
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease;
+    }
+
+    .feature-card:hover,
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-hover);
+      box-shadow:
+        var(--shadow-accent),
+        0 20px 55px rgba(0,0,0,0.16);
+    }
+
+    .feature-icon,
+    .benefit-icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      color: #fff;
+      background: linear-gradient(
+        135deg,
+        rgba(124,58,237,0.92),
+        rgba(168,85,247,0.55)
+      );
+      box-shadow: 0 12px 28px rgba(124,58,237,0.17);
+    }
+
+    .feature-icon svg,
+    .benefit-icon svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .feature-card h3,
+    .benefit-card h3 {
+      margin-bottom: 9px;
+      font-size: 18px;
+      letter-spacing: -0.015em;
+    }
+
+    .feature-card p,
+    .benefit-card p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 17px;
+    }
+
+    .coming-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(168,85,247,0.18);
+      color: var(--accent-3);
+      background: rgba(168,85,247,0.08);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* =========================
+       BENEFITS
+    ========================== */
+
+    .benefits-section {
+      padding-top: 30px;
+    }
+
+    .benefit-card {
+      min-height: 205px;
+    }
+
+    .benefit-icon {
+      color: var(--accent-3);
+      background: rgba(168,85,247,0.09);
+      border: 1px solid rgba(168,85,247,0.17);
+      box-shadow: none;
+    }
+
+    /* =========================
+       COUNTDOWN
+    ========================== */
+
+    .launch-box {
+      position: relative;
+      padding: 32px 22px;
+      border: 1px solid rgba(192,132,252,0.19);
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(168,85,247,0.14), transparent 34%),
+        radial-gradient(circle at 90% 80%, rgba(99,102,241,0.1), transparent 32%),
+        rgba(255,255,255,0.018);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .launch-box::after {
+      content: "";
+      position: absolute;
+      inset: auto 10% -130px 10%;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(124,58,237,0.15);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+
+    .launch-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .launch-description {
+      max-width: 720px;
+      margin: 0 auto 32px;
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .time-box {
+      padding: 17px 10px;
+      border: 1px solid rgba(192,132,252,0.15);
+      border-radius: 15px;
+      background: rgba(15,10,26,0.4);
+    }
+
+    .time-number {
+      display: block;
+      margin-bottom: 5px;
+      font-size: clamp(27px, 6vw, 42px);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #fff, var(--accent-3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .time-label {
+      color: var(--text-soft);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       ADS
+    ========================== */
+
+    .ad-section {
+      padding: 34px 0;
+    }
+
+    .ad-container {
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px dashed rgba(192,132,252,0.21);
+      border-radius: 18px;
+      background:
+        linear-gradient(140deg, rgba(124,58,237,0.045), rgba(255,255,255,0.012));
+      color: var(--text-soft);
+    }
+
+    .ad-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    .ad-hint {
+      max-width: 480px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(184,176,204,0.55);
+    }
+
+    /* =========================
+       FAQ
+    ========================== */
+
+    .faq-list {
+      max-width: 850px;
+      margin: 0 auto;
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(255,255,255,0.018);
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
+    .faq-item[open] {
+      border-color: var(--border-hover);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      list-style: none;
+      padding: 19px 20px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      flex-shrink: 0;
+      color: var(--accent-3);
+      font-size: 22px;
+      font-weight: 400;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      padding: 0 20px 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      padding: 55px 0 30px;
+      border-top: 1px solid rgba(192,132,252,0.1);
+      background: rgba(10, 6, 17, 0.34);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .footer-brand strong {
+      font-size: 18px;
+    }
+
+    .footer-brand span {
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .footer-links a {
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      padding-top: 22px;
+      border-top: 1px solid rgba(192,132,252,0.08);
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+
+    /* =========================
+       REVEAL ANIMATION
+    ========================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-reveal {
+      animation: heroFade 0.8s ease both;
+    }
+
+    @keyframes heroFade {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (min-width: 700px) {
+      .container {
+        width: min(calc(100% - 48px), var(--container));
+      }
+
+      .main-nav {
+        display: flex;
+      }
+
+      .hero {
+        padding: 110px 0;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .countdown {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .launch-box {
+        padding: 45px 40px;
+      }
+
+      .footer-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .cards-grid.features {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .cards-grid.benefits {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .feature-card,
+      .benefit-card {
+        padding: 27px;
+      }
+    }
+
+    @media (max-width: 699px) {
+      .main-nav {
+        display: none;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .hero-preview {
+        min-height: 285px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="site-header">
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="site-header">
     <div class="container header-inner">
 
-        <a
-            href="#top"
-            class="logo"
-            aria-label="AninCraft"
+      <a
+        class="logo"
+        href="#top"
+        data-i18n-aria-label="header.logoAria"
+      >
+        <span class="logo-icon" aria-hidden="true">⛏️</span>
+        <span class="logo-text">AninCraft</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-link" href="#about" data-i18n="nav.about"></a>
+        <a class="nav-link" href="#features" data-i18n="nav.features"></a>
+        <a class="nav-link" href="#faq" data-i18n="nav.faq"></a>
+        <a class="nav-link" href="#launch" data-i18n="nav.launch"></a>
+      </nav>
+
+      <div class="language-switcher" aria-label="Language switcher">
+        <button
+          class="lang-button active"
+          type="button"
+          data-lang="ru"
+          aria-pressed="true"
         >
-            AninCraft
-        </a>
+          RU
+        </button>
 
-        <nav class="main-nav" aria-label="Основная навигация">
-            <a
-                href="#about"
-                data-lang="ru"
-            >
-                О проекте
-            </a>
-
-            <a
-                href="#about"
-                data-lang="en"
-                class="lang-hidden"
-            >
-                About
-            </a>
-
-            <a
-                href="#features"
-                data-lang="ru"
-            >
-                Возможности
-            </a>
-
-            <a
-                href="#features"
-                data-lang="en"
-                class="lang-hidden"
-            >
-                Features
-            </a>
-
-            <a
-                href="#faq"
-                data-lang="ru"
-            >
-                FAQ
-            </a>
-
-            <a
-                href="#faq"
-                data-lang="en"
-                class="lang-hidden"
-            >
-                FAQ
-            </a>
-
-            <a
-                href="#comments"
-                data-lang="ru"
-            >
-                Комментарии
-            </a>
-
-            <a
-                href="#comments"
-                data-lang="en"
-                class="lang-hidden"
-            >
-                Comments
-            </a>
-        </nav>
-
-        <div class="language-switcher" aria-label="Выбор языка">
-            <button
-                type="button"
-                id="lang-ru"
-                class="language-button active"
-                aria-label="Русский"
-            >
-                RU
-            </button>
-
-            <button
-                type="button"
-                id="lang-en"
-                class="language-button"
-                aria-label="English"
-            >
-                EN
-            </button>
-        </div>
+        <button
+          class="lang-button"
+          type="button"
+          data-lang="en"
+          aria-pressed="false"
+        >
+          EN
+        </button>
+      </div>
 
     </div>
-</header>
+  </header>
 
+  <main id="top">
 
-<main id="top">
+    <!-- =========================
+         HERO
+    ========================== -->
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container hero-content">
+    <section class="hero" id="about">
+      <div class="container hero-grid">
 
-            <div class="hero-badge">
-                <span data-lang="ru">СКОРО ОТКРЫТИЕ</span>
-                <span data-lang="en" class="lang-hidden">COMING SOON</span>
+        <div class="hero-content hero-reveal">
+
+          <div class="hero-badge" data-i18n="hero.badge"></div>
+
+          <h1>
+            <span class="hero-title-gradient" data-i18n="hero.title"></span>
+          </h1>
+
+          <p
+            class="hero-description"
+            data-i18n="hero.description"
+          ></p>
+
+          <div class="hero-actions">
+
+            <!-- ЗАМЕНИ ССЫЛКУ -->
+            <a
+              id="mods-link"
+              class="btn btn-primary"
+              href="https://example.com"
+              data-i18n="hero.modsButton"
+              data-i18n-aria-label="hero.modsButtonAria"
+            ></a>
+
+            <a
+              class="btn btn-secondary"
+              href="#features"
+              data-i18n="hero.moreButton"
+              data-i18n-aria-label="hero.moreButtonAria"
+            ></a>
+
+          </div>
+        </div>
+
+        <div class="hero-preview hero-reveal" aria-hidden="true">
+
+          <div class="preview-glow"></div>
+
+          <div class="preview-card">
+
+            <div class="preview-top">
+              <div class="preview-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="preview-status"></div>
             </div>
 
-            <h1>
-                <span data-lang="ru">
-                    Будущий Minecraft-портал
-                </span>
+            <div class="preview-main-icon">🟣</div>
 
-                <span data-lang="en" class="lang-hidden">
-                    The Future Minecraft Portal
-                </span>
-            </h1>
+            <div class="preview-line large"></div>
+            <div class="preview-line small"></div>
 
-            <p class="hero-title">
-                AninCraft — Моды для Minecraft
-            </p>
+            <div class="preview-pill-row">
+              <span class="preview-pill"></span>
+              <span class="preview-pill"></span>
+              <span class="preview-pill"></span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section class="section" id="features">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label" data-i18n="features.label"></div>
+
+          <h2
+            class="section-title"
+            data-i18n="features.title"
+          ></h2>
+
+          <p
+            class="section-description"
+            data-i18n="features.description"
+          ></p>
+
+        </div>
+
+        <div class="cards-grid features">
+
+          <article class="feature-card reveal">
+
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M8 10h8M10 8v4M17.5 13.5h.01M14.5 16.5h.01"/>
+                <rect x="3" y="5" width="18" height="14" rx="4"/>
+                <path d="M7 18.5 5.5 21M17 18.5l1.5 2.5"/>
+              </svg>
+            </div>
+
+            <h3 data-i18n="features.mods.title"></h3>
+            <p data-i18n="features.mods.text"></p>
+
+            <span class="coming-label" data-i18n="common.soon"></span>
+
+          </article>
+
+          <article class="feature-card reveal">
+
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="3"/>
+                <path d="M8 8h8M8 12h8M8 16h5"/>
+              </svg>
+            </div>
+
+            <h3 data-i18n="features.modpacks.title"></h3>
+            <p data-i18n="features.modpacks.text"></p>
+
+            <span class="coming-label" data-i18n="common.soon"></span>
+
+          </article>
+
+          <article class="feature-card reveal">
+
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z"/>
+                <path d="M8 4v16M11 8h5M11 11h5M11 14h4"/>
+              </svg>
+            </div>
+
+            <h3 data-i18n="features.guides.title"></h3>
+            <p data-i18n="features.guides.text"></p>
+
+            <span class="coming-label" data-i18n="common.soon"></span>
+
+          </article>
+
+          <article class="feature-card reveal">
+
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M4 5h16v14H4z"/>
+                <path d="M7 9h10M7 12h10M7 15h6"/>
+                <path d="M16.5 4.5v3"/>
+              </svg>
+            </div>
+
+            <h3 data-i18n="features.news.title"></h3>
+            <p data-i18n="features.news.text"></p>
+
+            <span class="coming-label" data-i18n="common.soon"></span>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         BENEFITS
+    ========================== -->
+
+    <section class="section benefits-section">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label" data-i18n="benefits.label"></div>
+
+          <h2
+            class="section-title"
+            data-i18n="benefits.title"
+          ></h2>
+
+          <p
+            class="section-description"
+            data-i18n="benefits.description"
+          ></p>
+
+        </div>
+
+        <div class="cards-grid benefits">
+
+          <article class="benefit-card reveal">
+
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M12 3v18M7 6h8a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h8"/>
+              </svg>
+            </div>
+
+            <h3 data-i18n="benefits.free.title"></h3>
+            <p data-i18n="benefits.free.text"></p>
+
+          </article>
+
+          <article class="benefit-card reveal">
+
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M12 3 5 6v5c0 4.6 2.8 8.2 7 10 4.2-1.8 7-5.4 7-10V6l-7-3Z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+
+            <h3 data-i18n="benefits.safe.title"></h3>
+            <p data-i18n="benefits.safe.text"></p>
+
+          </article>
+
+          <article class="benefit-card reveal">
+
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="m13 2-8 11h6l-1 9 8-11h-6l1-9Z"/>
+              </svg>
+            </div>
+
+            <h3 data-i18n="benefits.fast.title"></h3>
+            <p data-i18n="benefits.fast.text"></p>
+
+          </article>
+
+          <article class="benefit-card reveal">
+
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M20 12a8 8 0 1 1-2.34-5.66"/>
+                <path d="M20 5v5h-5"/>
+                <path d="M12 7v5l3 2"/>
+              </svg>
+            </div>
+
+            <h3 data-i18n="benefits.updates.title"></h3>
+            <p data-i18n="benefits.updates.text"></p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         AD TOP
+    ========================== -->
+
+    <section class="ad-section" aria-label="Advertisement">
+      <div class="container">
+
+        <div class="ad-container reveal" id="ad-top">
+
+          <!-- ВСТАВЬ КОД РЕКЛАМЫ MITGO ЗДЕСЬ -->
+
+          <span class="ad-label" data-i18n="ads.label"></span>
+          <span class="ad-hint" data-i18n="ads.topHint"></span>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         COUNTDOWN / LAUNCH
+    ========================== -->
+
+    <section class="section" id="launch">
+
+      <div class="container">
+
+        <div class="launch-box reveal">
+
+          <div class="launch-content">
+
+            <div class="section-label" data-i18n="launch.label"></div>
+
+            <h2
+              class="section-title"
+              data-i18n="launch.title"
+            ></h2>
 
             <p
-                class="hero-description"
-                data-lang="ru"
-            >
-                Моды, сборки, инструкции и всё необходимое
-                для комфортной игры в Minecraft.
-            </p>
+              class="launch-description"
+              data-i18n="launch.description"
+            ></p>
 
-            <p
-                class="hero-description lang-hidden"
-                data-lang="en"
-            >
-                Mods, modpacks, guides and everything you need
-                for a better Minecraft experience.
-            </p>
+            <div class="countdown" id="countdown" aria-live="polite">
 
-            <div class="hero-actions">
+              <div class="time-box">
+                <span class="time-number" id="days">00</span>
+                <span class="time-label" data-i18n="time.days"></span>
+              </div>
 
-                <a
-                    href="#features"
-                    class="button button-primary"
-                    data-lang="ru"
-                >
-                    Узнать больше
-                </a>
+              <div class="time-box">
+                <span class="time-number" id="hours">00</span>
+                <span class="time-label" data-i18n="time.hours"></span>
+              </div>
 
-                <a
-                    href="#features"
-                    class="button button-primary lang-hidden"
-                    data-lang="en"
-                >
-                    Learn more
-                </a>
+              <div class="time-box">
+                <span class="time-number" id="minutes">00</span>
+                <span class="time-label" data-i18n="time.minutes"></span>
+              </div>
 
-                <a
-                    href="https://example.com"
-                    class="button button-secondary"
-                    id="mods-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-lang="ru"
-                >
-                    Моды
-                </a>
-
-                <a
-                    href="https://example.com"
-                    class="button button-secondary lang-hidden"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-lang="en"
-                >
-                    Mods
-                </a>
+              <div class="time-box">
+                <span class="time-number" id="seconds">00</span>
+                <span class="time-label" data-i18n="time.seconds"></span>
+              </div>
 
             </div>
 
+          </div>
+
         </div>
+
+      </div>
+
     </section>
 
+    <!-- =========================
+         AD MIDDLE
+    ========================== -->
 
-    <!-- TOP AD -->
     <section class="ad-section">
-        <div class="container">
 
-            <!--
-                Рекламный блок.
-                Здесь позже можно разместить код рекламной сети.
-            -->
+      <div class="container">
 
-            <div class="ad-placeholder">
+        <div class="ad-container reveal" id="ad-middle">
 
-                <span data-lang="ru">
-                    РЕКЛАМА
-                </span>
+          <!-- ВСТАВЬ КОД РЕКЛАМЫ MITGO ЗДЕСЬ -->
 
-                <span data-lang="en" class="lang-hidden">
-                    ADVERTISEMENT
-                </span>
-
-            </div>
+          <span class="ad-label" data-i18n="ads.label"></span>
+          <span class="ad-hint" data-i18n="ads.middleHint"></span>
 
         </div>
+
+      </div>
+
     </section>
 
+    <!-- =========================
+         FAQ
+    ========================== -->
 
-    <!-- ABOUT -->
-    <section
-        class="section"
-        id="about"
-    >
-        <div class="container">
+    <section class="section" id="faq">
 
-            <div class="section-heading">
+      <div class="container">
 
-                <span class="section-number">
-                    01
-                </span>
+        <div class="section-header reveal">
 
-                <div>
-                    <h2 data-lang="ru">
-                        Что будет на AninCraft?
-                    </h2>
+          <div class="section-label" data-i18n="faq.label"></div>
 
-                    <h2
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        What will be on AninCraft?
-                    </h2>
+          <h2
+            class="section-title"
+            data-i18n="faq.title"
+          ></h2>
 
-                    <p data-lang="ru">
-                        Всё необходимое для Minecraft в одном месте.
-                    </p>
-
-                    <p
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Everything you need for Minecraft in one place.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="cards-grid">
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        ⚒
-                    </div>
-
-                    <h3 data-lang="ru">
-                        Моды
-                    </h3>
-
-                    <h3
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Mods
-                    </h3>
-
-                    <p data-lang="ru">
-                        Каталог модов для разных версий Minecraft
-                        с описаниями и инструкциями по установке.
-                    </p>
-
-                    <p
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        A catalog of mods for different Minecraft
-                        versions with descriptions and installation guides.
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        📦
-                    </div>
-
-                    <h3 data-lang="ru">
-                        Сборки
-                    </h3>
-
-                    <h3
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Modpacks
-                    </h3>
-
-                    <p data-lang="ru">
-                        Готовые сборки для быстрого старта
-                        и интересного игрового опыта.
-                    </p>
-
-                    <p
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Ready-to-use modpacks for a quick start
-                        and an interesting gaming experience.
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        📖
-                    </div>
-
-                    <h3 data-lang="ru">
-                        Инструкции
-                    </h3>
-
-                    <h3
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Guides
-                    </h3>
-
-                    <p data-lang="ru">
-                        Понятные инструкции по установке модов,
-                        настройке Minecraft и решению проблем.
-                    </p>
-
-                    <p
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Easy-to-follow guides for installing mods,
-                        configuring Minecraft and fixing problems.
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        📰
-                    </div>
-
-                    <h3 data-lang="ru">
-                        Новости
-                    </h3>
-
-                    <h3
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        News
-                    </h3>
-
-                    <p data-lang="ru">
-                        Новости Minecraft, обновления модов
-                        и интересные события сообщества.
-                    </p>
-
-                    <p
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Minecraft news, mod updates
-                        and interesting community events.
-                    </p>
-
-                </article>
-
-            </div>
+          <p
+            class="section-description"
+            data-i18n="faq.description"
+          ></p>
 
         </div>
+
+        <div class="faq-list">
+
+          <details class="faq-item reveal">
+            <summary data-i18n="faq.q1"></summary>
+            <div class="faq-answer" data-i18n="faq.a1"></div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary data-i18n="faq.q2"></summary>
+            <div class="faq-answer" data-i18n="faq.a2"></div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary data-i18n="faq.q3"></summary>
+            <div class="faq-answer" data-i18n="faq.a3"></div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary data-i18n="faq.q4"></summary>
+            <div class="faq-answer" data-i18n="faq.a4"></div>
+          </details>
+
+        </div>
+
+      </div>
+
     </section>
 
+    <!-- =========================
+         AD BOTTOM
+    ========================== -->
 
-    <!-- MIDDLE AD -->
     <section class="ad-section">
-        <div class="container">
 
-            <div class="ad-placeholder">
+      <div class="container">
 
-                <span data-lang="ru">
-                    РЕКЛАМА
-                </span>
+        <div class="ad-container reveal" id="ad-bottom">
 
-                <span data-lang="en" class="lang-hidden">
-                    ADVERTISEMENT
-                </span>
+          <!-- ВСТАВЬ КОД РЕКЛАМЫ MITGO ЗДЕСЬ -->
 
-            </div>
+          <span class="ad-label" data-i18n="ads.label"></span>
+          <span class="ad-hint" data-i18n="ads.bottomHint"></span>
 
         </div>
-    </section>
 
-
-    <!-- FEATURES -->
-    <section
-        class="section section-dark"
-        id="features"
-    >
-        <div class="container">
-
-            <div class="section-heading">
-
-                <span class="section-number">
-                    02
-                </span>
-
-                <div>
-
-                    <h2 data-lang="ru">
-                        Почему AninCraft?
-                    </h2>
-
-                    <h2
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Why AninCraft?
-                    </h2>
-
-                    <p data-lang="ru">
-                        Проект создаётся с упором на удобство.
-                    </p>
-
-                    <p
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        The project is being built with convenience in mind.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="advantages">
-
-                <div class="advantage">
-
-                    <span class="advantage-number">
-                        01
-                    </span>
-
-                    <div>
-
-                        <h3 data-lang="ru">
-                            Просто
-                        </h3>
-
-                        <h3
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Simple
-                        </h3>
-
-                        <p data-lang="ru">
-                            Понятная навигация и минимум лишних элементов.
-                        </p>
-
-                        <p
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Clear navigation and no unnecessary elements.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="advantage">
-
-                    <span class="advantage-number">
-                        02
-                    </span>
-
-                    <div>
-
-                        <h3 data-lang="ru">
-                            Быстро
-                        </h3>
-
-                        <h3
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Fast
-                        </h3>
-
-                        <p data-lang="ru">
-                            Лёгкий сайт с быстрой загрузкой страниц.
-                        </p>
-
-                        <p
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            A lightweight website with fast page loading.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="advantage">
-
-                    <span class="advantage-number">
-                        03
-                    </span>
-
-                    <div>
-
-                        <h3 data-lang="ru">
-                            Полезно
-                        </h3>
-
-                        <h3
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Useful
-                        </h3>
-
-                        <p data-lang="ru">
-                            Только полезные материалы для игроков Minecraft.
-                        </p>
-
-                        <p
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Only useful content for Minecraft players.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="advantage">
-
-                    <span class="advantage-number">
-                        04
-                    </span>
-
-                    <div>
-
-                        <h3 data-lang="ru">
-                            Развитие
-                        </h3>
-
-                        <h3
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Growing
-                        </h3>
-
-                        <p data-lang="ru">
-                            Сайт будет постепенно пополняться новыми возможностями.
-                        </p>
-
-                        <p
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            The website will gradually gain new features.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- COUNTDOWN -->
-    <section class="section countdown-section">
-
-        <div class="container">
-
-            <div class="section-heading centered">
-
-                <span class="section-number">
-                    03
-                </span>
-
-                <div>
-
-                    <h2 data-lang="ru">
-                        🚀 Скоро открытие
-                    </h2>
-
-                    <h2
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        🚀 Launching soon
-                    </h2>
-
-                    <p data-lang="ru">
-                        Мы готовим сайт к запуску.
-                    </p>
-
-                    <p
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        We are preparing the website for launch.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div
-                class="countdown"
-                id="countdown"
-                aria-live="polite"
-            >
-
-                <div class="time-box">
-
-                    <span
-                        class="time-value"
-                        id="days"
-                    >
-                        00
-                    </span>
-
-                    <span
-                        class="time-label"
-                        data-lang="ru"
-                    >
-                        дней
-                    </span>
-
-                    <span
-                        class="time-label lang-hidden"
-                        data-lang="en"
-                    >
-                        days
-                    </span>
-
-                </div>
-
-
-                <div class="time-separator">
-                    :
-                </div>
-
-
-                <div class="time-box">
-
-                    <span
-                        class="time-value"
-                        id="hours"
-                    >
-                        00
-                    </span>
-
-                    <span
-                        class="time-label"
-                        data-lang="ru"
-                    >
-                        часов
-                    </span>
-
-                    <span
-                        class="time-label lang-hidden"
-                        data-lang="en"
-                    >
-                        hours
-                    </span>
-
-                </div>
-
-
-                <div class="time-separator">
-                    :
-                </div>
-
-
-                <div class="time-box">
-
-                    <span
-                        class="time-value"
-                        id="minutes"
-                    >
-                        00
-                    </span>
-
-                    <span
-                        class="time-label"
-                        data-lang="ru"
-                    >
-                        минут
-                    </span>
-
-                    <span
-                        class="time-label lang-hidden"
-                        data-lang="en"
-                    >
-                        minutes
-                    </span>
-
-                </div>
-
-
-                <div class="time-separator">
-                    :
-                </div>
-
-
-                <div class="time-box">
-
-                    <span
-                        class="time-value"
-                        id="seconds"
-                    >
-                        00
-                    </span>
-
-                    <span
-                        class="time-label"
-                        data-lang="ru"
-                    >
-                        секунд
-                    </span>
-
-                    <span
-                        class="time-label lang-hidden"
-                        data-lang="en"
-                    >
-                        seconds
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
+      </div>
 
     </section>
 
+  </main>
 
-    <!-- FAQ -->
-    <section
-        class="section"
-        id="faq"
-    >
+  <!-- =========================
+       FOOTER
+  ========================== -->
 
-        <div class="container">
+  <footer>
 
-            <div class="section-heading centered">
+    <div class="container">
 
-                <span class="section-number">
-                    04
-                </span>
+      <div class="footer-inner">
 
-                <div>
+        <div class="footer-brand">
 
-                    <h2 data-lang="ru">
-                        Частые вопросы
-                    </h2>
+          <strong>AninCraft</strong>
 
-                    <h2
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Frequently Asked Questions
-                    </h2>
-
-                    <p data-lang="ru">
-                        Пока проект готовится, отвечаем на самые популярные вопросы.
-                    </p>
-
-                    <p
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        While the project is being prepared, here are answers to common questions.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="faq-list">
-
-                <details class="faq-item">
-
-                    <summary>
-
-                        <span
-                            data-lang="ru"
-                        >
-                            Когда откроется AninCraft?
-                        </span>
-
-                        <span
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            When will AninCraft launch?
-                        </span>
-
-                        <span class="faq-plus">
-                            +
-                        </span>
-
-                    </summary>
-
-                    <div class="faq-answer">
-
-                        <p data-lang="ru">
-                            Мы планируем открыть AninCraft после завершения
-                            основных разделов сайта и проверки всех функций.
-                        </p>
-
-                        <p
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            We plan to launch AninCraft after the main sections
-                            of the website are completed and all features are tested.
-                        </p>
-
-                    </div>
-
-                </details>
-
-
-                <details class="faq-item">
-
-                    <summary>
-
-                        <span data-lang="ru">
-                            Моды будут бесплатными?
-                        </span>
-
-                        <span
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Will the mods be free?
-                        </span>
-
-                        <span class="faq-plus">
-                            +
-                        </span>
-
-                    </summary>
-
-                    <div class="faq-answer">
-
-                        <p data-lang="ru">
-                            AninCraft ориентирован на удобный каталог модов
-                            и материалов. Условия распространения будут указаны
-                            отдельно для каждого материала.
-                        </p>
-
-                        <p
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            AninCraft is focused on providing a convenient catalog
-                            of mods and resources. Distribution terms will be listed
-                            separately for each resource.
-                        </p>
-
-                    </div>
-
-                </details>
-
-
-                <details class="faq-item">
-
-                    <summary>
-
-                        <span data-lang="ru">
-                            Для каких версий Minecraft будут моды?
-                        </span>
-
-                        <span
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Which Minecraft versions will be supported?
-                        </span>
-
-                        <span class="faq-plus">
-                            +
-                        </span>
-
-                    </summary>
-
-                    <div class="faq-answer">
-
-                        <p data-lang="ru">
-                            Планируется поддержка популярных версий Minecraft.
-                            Точные версии будут указаны в карточках модов.
-                        </p>
-
-                        <p
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Popular Minecraft versions are planned to be supported.
-                            Exact versions will be listed on each mod page.
-                        </p>
-
-                    </div>
-
-                </details>
-
-
-                <details class="faq-item">
-
-                    <summary>
-
-                        <span data-lang="ru">
-                            Можно ли предложить свой мод?
-                        </span>
-
-                        <span
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Can I submit my own mod?
-                        </span>
-
-                        <span class="faq-plus">
-                            +
-                        </span>
-
-                    </summary>
-
-                    <div class="faq-answer">
-
-                        <p data-lang="ru">
-                            Да. После запуска сайта планируется возможность
-                            предложить мод или другой полезный материал.
-                        </p>
-
-                        <p
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Yes. After the website launches, we plan to allow
-                            users to submit mods and other useful resources.
-                        </p>
-
-                    </div>
-
-                </details>
-
-            </div>
+          <span data-i18n="footer.status"></span>
 
         </div>
 
-    </section>
+        <div class="footer-links">
 
+          <span data-i18n="footer.copy"></span>
 
-    <!-- COMMENTS -->
-    <section
-        class="section comments-section"
-        id="comments"
-    >
+          <a
+            href="#"
+            data-i18n="footer.privacy"
+            data-i18n-aria-label="footer.privacyAria"
+          ></a>
 
-        <div class="container">
-
-            <div class="section-heading">
-
-                <span class="section-number">
-                    05
-                </span>
-
-                <div>
-
-                    <h2 data-lang="ru">
-                        Комментарии
-                    </h2>
-
-                    <h2
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Comments
-                    </h2>
-
-                    <p data-lang="ru">
-                        Оставьте свой комментарий — регистрация не требуется.
-                    </p>
-
-                    <p
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        Leave a comment — no registration required.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="comments-box">
-
-                <form
-                    id="comment-form"
-                    class="comment-form"
-                    autocomplete="off"
-                >
-
-                    <div class="form-group">
-
-                        <label
-                            for="comment-name"
-                            data-lang="ru"
-                        >
-                            Имя
-                            <span class="optional">
-                                необязательно
-                            </span>
-                        </label>
-
-                        <label
-                            for="comment-name"
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Name
-                            <span class="optional">
-                                optional
-                            </span>
-                        </label>
-
-                        <input
-                            type="text"
-                            id="comment-name"
-                            maxlength="50"
-                            placeholder="Аноним"
-                            data-placeholder-ru="Аноним"
-                            data-placeholder-en="Anonymous"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label
-                            for="comment-text"
-                            data-lang="ru"
-                        >
-                            Комментарий
-                        </label>
-
-                        <label
-                            for="comment-text"
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            Comment
-                        </label>
-
-                        <textarea
-                            id="comment-text"
-                            rows="5"
-                            maxlength="1000"
-                            required
-                            data-placeholder-ru="Напишите свой комментарий..."
-                            data-placeholder-en="Write your comment..."
-                            placeholder="Напишите свой комментарий..."
-                        ></textarea>
-
-                    </div>
-
-
-                    <div
-                        class="comment-form-footer"
-                    >
-
-                        <p
-                            id="comment-error"
-                            class="comment-error"
-                            role="alert"
-                            aria-live="polite"
-                        ></p>
-
-                        <button
-                            type="submit"
-                            class="button button-primary"
-                        >
-
-                            <span data-lang="ru">
-                                Отправить
-                            </span>
-
-                            <span
-                                data-lang="en"
-                                class="lang-hidden"
-                            >
-                                Send
-                            </span>
-
-                        </button>
-
-                    </div>
-
-                </form>
-
-
-                <div
-                    id="comments-list"
-                    class="comments-list"
-                    aria-live="polite"
-                ></div>
-
-
-                <div
-                    id="comments-empty"
-                    class="comments-empty"
-                >
-
-                    <span data-lang="ru">
-                        Пока комментариев нет. Будьте первым!
-                    </span>
-
-                    <span
-                        data-lang="en"
-                        class="lang-hidden"
-                    >
-                        There are no comments yet. Be the first!
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- BOTTOM AD -->
-    <section class="ad-section">
-        <div class="container">
-
-            <div class="ad-placeholder">
-
-                <span data-lang="ru">
-                    РЕКЛАМА
-                </span>
-
-                <span data-lang="en" class="lang-hidden">
-                    ADVERTISEMENT
-                </span>
-
-            </div>
-
-        </div>
-    </section>
-
-</main>
-
-
-<footer class="site-footer">
-
-    <div class="container footer-inner">
-
-        <p>
-            © <span id="current-year"></span> AninCraft
-        </p>
-
-        <p data-lang="ru">
-            Сделано с душой
-        </p>
-
-        <p
-            data-lang="en"
-            class="lang-hidden"
-        >
-            Made with care
-        </p>
-
-        <a
+          <a
             href="mailto:mail@example.com"
-            data-lang="ru"
-        >
-            Связаться
-        </a>
+            data-i18n="footer.contact"
+            data-i18n-aria-label="footer.contactAria"
+          ></a>
 
-        <a
-            href="mailto:mail@example.com"
-            data-lang="en"
-            class="lang-hidden"
-        >
-            Contact
-        </a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span data-i18n="footer.bottom"></span>
+      </div>
 
     </div>
 
-</footer>
+  </footer>
 
+  <script>
+    /*
+      ============================================================
+      ANINCRAFT — MULTILINGUAL SINGLE-FILE LANDING PAGE
+      ============================================================
+    */
 
-<script src="script.js"></script>
+    const translations = {
+      ru: {
+        "meta.title": "AninCraft — Моды для Minecraft",
+        "meta.description": "AninCraft готовится к запуску. Площадка для скачивания модов Minecraft откроется в течение недели.",
+        "meta.keywords": "AninCraft, Minecraft, моды Minecraft, Minecraft mods, сборки Minecraft",
+
+        "header.logoAria": "AninCraft",
+
+        "nav.about": "О проекте",
+        "nav.features": "Возможности",
+        "nav.faq": "FAQ",
+        "nav.launch": "Скоро",
+
+        "hero.badge": "⏳ Открытие в течение недели",
+        "hero.title": "AninCraft уже скоро!",
+        "hero.description": "Площадка для скачивания модов Minecraft откроется в течение недели. Готовься к новым приключениям, модификациям и интересным сборкам!",
+        "hero.modsButton": "Перейти на сайт модов · скоро",
+        "hero.modsButtonAria": "Перейти на будущий сайт модов AninCraft — сайт откроется в течение недели",
+        "hero.moreButton": "Узнать больше",
+        "hero.moreButtonAria": "Узнать больше о будущем AninCraft",
+
+        "features.label": "Что готовится",
+        "features.title": "Что будет на AninCraft",
+        "features.description": "Основные разделы будущей площадки уже планируются и готовятся к запуску.",
+
+        "features.mods.title": "Моды",
+        "features.mods.text": "Подборка модов Minecraft, которая будет доступна после запуска площадки.",
+        "features.modpacks.title": "Сборки",
+        "features.modpacks.text": "Готовые наборы модов для разных стилей игры будут добавляться постепенно.",
+        "features.guides.title": "Инструкции",
+        "features.guides.text": "Понятные руководства помогут разбираться с установкой и настройкой модов.",
+        "features.news.title": "Новости",
+        "features.news.text": "Обновления проекта, новые релизы и важные события будут собираться в одном месте.",
+
+        "common.soon": "Скоро",
+
+        "benefits.label": "Почему проект",
+        "benefits.title": "Почему AninCraft",
+        "benefits.description": "Проект создаётся с упором на простоту, удобство и комфортное использование.",
+
+        "benefits.free.title": "Бесплатно",
+        "benefits.free.text": "Основная идея площадки — сделать будущий доступ к материалам максимально простым.",
+        "benefits.safe.title": "Безопасно",
+        "benefits.safe.text": "Проект планируется с вниманием к качеству материалов и понятной информации о них.",
+        "benefits.fast.title": "Быстро",
+        "benefits.fast.text": "Страницы будут создаваться с учётом быстрой загрузки и удобного просмотра.",
+        "benefits.updates.title": "Регулярные обновления",
+        "benefits.updates.text": "После запуска новые материалы и обновления будут появляться постепенно.",
+
+        "launch.label": "До запуска",
+        "launch.title": "Открытие — в течение недели",
+        "launch.description": "AninCraft откроется в течение недели. Следи за обновлениями — будущая площадка уже готовится к запуску!",
+
+        "time.days": "дней",
+        "time.hours": "часов",
+        "time.minutes": "минут",
+        "time.seconds": "секунд",
+
+        "ads.label": "Реклама",
+        "ads.topHint": "Рекламный блок будет подключён перед запуском.",
+        "ads.middleHint": "Место для адаптивного рекламного блока.",
+        "ads.bottomHint": "Рекламный блок для будущей площадки.",
+
+        "faq.label": "FAQ",
+        "faq.title": "Частые вопросы",
+        "faq.description": "Коротко о будущем запуске AninCraft.",
+
+        "faq.q1": "Когда откроется AninCraft?",
+        "faq.a1": "Сайт модов AninCraft откроется в течение недели. Точная дата запуска будет объявлена ближе к открытию.",
+
+        "faq.q2": "Это будет бесплатно?",
+        "faq.a2": "Проект готовится с расчётом на бесплатный доступ к основной информации и материалам. Окончательные детали будут опубликованы после запуска.",
+
+        "faq.q3": "Какие моды будут?",
+        "faq.a3": "В будущем планируется добавлять разные категории модов Minecraft, а также сборки и полезные материалы по установке.",
+
+        "faq.q4": "Как я узнаю о запуске?",
+        "faq.a4": "Следи за обновлениями AninCraft. После запуска ссылка на будущую площадку будет заменена на настоящий адрес сайта.",
+
+        "footer.status": "Сайт модов откроется в течение недели",
+        "footer.copy": "© 2026 AninCraft",
+        "footer.privacy": "Политика конфиденциальности",
+        "footer.privacyAria": "Политика конфиденциальности AninCraft",
+        "footer.contact": "Контакт",
+        "footer.contactAria": "Связаться с AninCraft по электронной почте",
+        "footer.bottom": "Открытие — в течение недели."
+      },
+
+      en: {
+        "meta.title": "AninCraft — Minecraft Mods",
+        "meta.description": "AninCraft is preparing to launch. The Minecraft mods platform will open within a week.",
+        "meta.keywords": "AninCraft, Minecraft, Minecraft mods, Minecraft modpacks, Minecraft guides",
+
+        "header.logoAria": "AninCraft",
+
+        "nav.about": "About",
+        "nav.features": "Features",
+        "nav.faq": "FAQ",
+        "nav.launch": "Coming soon",
+
+        "hero.badge": "⏳ Opening within a week",
+        "hero.title": "AninCraft is coming soon!",
+        "hero.description": "The Minecraft mods platform will open within a week. Get ready for new adventures, mods, and exciting modpacks!",
+        "hero.modsButton": "Go to the mods site · soon",
+        "hero.modsButtonAria": "Go to the future AninCraft mods website — opening within a week",
+        "hero.moreButton": "Learn more",
+        "hero.moreButtonAria": "Learn more about the upcoming AninCraft project",
+
+        "features.label": "What's coming",
+        "features.title": "What will be on AninCraft",
+        "features.description": "The main sections of the future platform are already being planned and prepared for launch.",
+
+        "features.mods.title": "Mods",
+        "features.mods.text": "A collection of Minecraft mods that will become available after the platform launches.",
+        "features.modpacks.title": "Modpacks",
+        "features.modpacks.text": "Ready-made mod combinations for different play styles will be added over time.",
+        "features.guides.title": "Guides",
+        "features.guides.text": "Clear guides will help with installing and configuring mods.",
+        "features.news.title": "News",
+        "features.news.text": "Project updates, new releases, and important announcements will be collected in one place.",
+
+        "common.soon": "Soon",
+
+        "benefits.label": "Why the project",
+        "benefits.title": "Why AninCraft",
+        "benefits.description": "The project is being built around simplicity, convenience, and a comfortable user experience.",
+
+        "benefits.free.title": "Free",
+        "benefits.free.text": "The main idea is to keep future access to the platform's materials as simple as possible.",
+        "benefits.safe.title": "Safe",
+        "benefits.safe.text": "The project is being prepared with attention to content quality and clear information.",
+        "benefits.fast.title": "Fast",
+        "benefits.fast.text": "The future pages will be designed with fast loading and comfortable browsing in mind.",
+        "benefits.updates.title": "Regular updates",
+        "benefits.updates.text": "After launch, new materials and updates will gradually be added.",
+
+        "launch.label": "Before launch",
+        "launch.title": "Opening — within a week",
+        "launch.description": "AninCraft will open within a week. Follow the updates — the future platform is already being prepared for launch!",
+
+        "time.days": "days",
+        "time.hours": "hours",
+        "time.minutes": "minutes",
+        "time.seconds": "seconds",
+
+        "ads.label": "Advertisement",
+        "ads.topHint": "This ad space will be connected before launch.",
+        "ads.middleHint": "Space reserved for a responsive ad unit.",
+        "ads.bottomHint": "Advertisement space for the future platform.",
+
+        "faq.label": "FAQ",
+        "faq.title": "Frequently asked questions",
+        "faq.description": "A few quick answers about the upcoming AninCraft launch.",
+
+        "faq.q1": "When will AninCraft launch?",
+        "faq.a1": "The AninCraft mods site will open within a week. The exact launch date will be announced closer to the opening.",
+
+        "faq.q2": "Will it be free?",
+        "faq.a2": "The project is being prepared with free access to the main information and materials in mind. Final details will be published after launch.",
+
+        "faq.q3": "What kind of mods will be available?",
+        "faq.a3": "The future platform is planned to include different Minecraft mod categories, modpacks, and useful installation guides.",
+
+        "faq.q4": "How will I know when it launches?",
+        "faq.a4": "Follow AninCraft updates. After launch, the link to the future platform will be replaced with the real website address.",
+
+        "footer.status": "The mods site opens within a week",
+        "footer.copy": "© 2026 AninCraft",
+        "footer.privacy": "Privacy policy",
+        "footer.privacyAria": "AninCraft privacy policy",
+        "footer.contact": "Contact",
+        "footer.contactAria": "Contact AninCraft by email",
+        "footer.bottom": "Opening — within a week."
+      }
+    };
+
+    /*
+      ============================================================
+      LANGUAGE
+      ============================================================
+    */
+
+    let currentLanguage = "ru";
+
+    function getInitialLanguage() {
+      const savedLanguage = localStorage.getItem("lang");
+
+      if (savedLanguage === "ru" || savedLanguage === "en") {
+        return savedLanguage;
+      }
+
+      const browserLanguage = navigator.language || navigator.userLanguage || "";
+
+      return browserLanguage.toLowerCase().startsWith("ru")
+        ? "ru"
+        : "en";
+    }
+
+    function getTranslation(key) {
+      return (
+        translations[currentLanguage]?.[key] ??
+        translations.en?.[key] ??
+        key
+      );
+    }
+
+    function setLanguage(lang) {
+      if (!translations[lang]) {
+        lang = "en";
+      }
+
+      currentLanguage = lang;
+
+      document.documentElement.lang = lang;
+
+      /*
+        Обычные текстовые элементы.
+      */
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        const value = getTranslation(key);
+
+        element.textContent = value;
+      });
+
+      /*
+        Placeholder.
+      */
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+        const key = element.getAttribute("data-i18n-placeholder");
+        const value = getTranslation(key);
+
+        element.setAttribute("placeholder", value);
+      });
+
+      /*
+        aria-label.
+      */
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        const key = element.getAttribute("data-i18n-aria-label");
+        const value = getTranslation(key);
+
+        element.setAttribute("aria-label", value);
+      });
+
+      /*
+        title.
+      */
+      document.querySelectorAll("[data-i18n-title]").forEach((element) => {
+        const key = element.getAttribute("data-i18n-title");
+        const value = getTranslation(key);
+
+        element.setAttribute("title", value);
+      });
+
+      /*
+        SEO title.
+      */
+      document.title = getTranslation("meta.title");
+
+      /*
+        SEO description.
+      */
+      const descriptionTag = document.querySelector('meta[name="description"]');
+
+      if (descriptionTag) {
+        descriptionTag.setAttribute(
+          "content",
+          getTranslation("meta.description")
+        );
+      }
+
+      /*
+        SEO keywords.
+      */
+      const keywordsTag = document.querySelector('meta[name="keywords"]');
+
+      if (keywordsTag) {
+        keywordsTag.setAttribute(
+          "content",
+          getTranslation("meta.keywords")
+        );
+      }
+
+      /*
+        Open Graph.
+      */
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      const ogLocale = document.querySelector('meta[property="og:locale"]');
+
+      if (ogTitle) {
+        ogTitle.setAttribute("content", getTranslation("meta.title"));
+      }
+
+      if (ogDescription) {
+        ogDescription.setAttribute(
+          "content",
+          getTranslation("meta.description")
+        );
+      }
+
+      if (ogLocale) {
+        ogLocale.setAttribute(
+          "content",
+          lang === "ru" ? "ru_RU" : "en_US"
+        );
+      }
+
+      /*
+        Активная кнопка языка.
+      */
+      document.querySelectorAll(".lang-button").forEach((button) => {
+        const isActive = button.dataset.lang === lang;
+
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      /*
+        Сохраняем язык.
+      */
+      localStorage.setItem("lang", lang);
+
+      /*
+        Обновляем таймер после переключения языка.
+      */
+      updateCountdown();
+    }
+
+    /*
+      ============================================================
+      COUNTDOWN
+      ============================================================
+    */
+
+    /*
+      ВАЖНО:
+      Пользователь указал 1 сентября 2026 года.
+      После наступления этой даты таймер будет показывать нули.
+
+      Для нового запуска просто замени значение TARGET_DATE.
+    */
+    const TARGET_DATE = new Date("2026-09-01T00:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const difference = TARGET_DATE.getTime() - now.getTime();
+
+      let days = 0;
+      let hours = 0;
+      let minutes = 0;
+      let seconds = 0;
+
+      if (difference > 0) {
+        const totalSeconds = Math.floor(difference / 1000);
+
+        days = Math.floor(totalSeconds / 86400);
+        hours = Math.floor((totalSeconds % 86400) / 3600);
+        minutes = Math.floor((totalSeconds % 3600) / 60);
+        seconds = totalSeconds % 60;
+      }
+
+      document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+      document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+    }
+
+    /*
+      ============================================================
+      SCROLL REVEAL
+      ============================================================
+    */
+
+    function initRevealAnimation() {
+      const elements = document.querySelectorAll(".reveal");
+
+      if (!("IntersectionObserver" in window)) {
+        elements.forEach((element) => {
+          element.classList.add("is-visible");
+        });
+
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries, currentObserver) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              currentObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "0px 0px -30px 0px"
+        }
+      );
+
+      elements.forEach((element) => observer.observe(element));
+    }
+
+    /*
+      ============================================================
+      LANGUAGE BUTTONS
+      ============================================================
+    */
+
+    document.querySelectorAll(".lang-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        setLanguage(button.dataset.lang);
+      });
+    });
+
+    /*
+      ============================================================
+      INIT
+      ============================================================
+    */
+
+    document.addEventListener("DOMContentLoaded", () => {
+      currentLanguage = getInitialLanguage();
+
+      setLanguage(currentLanguage);
+
+      updateCountdown();
+
+      setInterval(updateCountdown, 1000);
+
+      initRevealAnimation();
+    });
+
+    /*
+      ============================================================
+      БУДУЩИЕ ДОПОЛНЕНИЯ
+      ============================================================
+
+      <!-- ДОБАВЬ ПЕРЕВОД ЗДЕСЬ -->
+
+      При добавлении нового текста:
+      1. Добавь ключ в translations.ru.
+      2. Добавь ТОЧНО ТАКОЙ ЖЕ ключ в translations.en.
+      3. В HTML используй data-i18n="твой.ключ".
+
+      Пример:
+
+      ru:
+        "new.text": "Новый текст",
+
+      en:
+        "new.text": "New text"
+
+      HTML:
+        <span data-i18n="new.text"></span>
+    */
+  </script>
 
 </body>
 </html>
