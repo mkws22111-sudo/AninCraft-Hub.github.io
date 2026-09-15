@@ -1,56 +1,42 @@
-/*
-================================================================
-ANINCRAFT
-Основной JavaScript
-================================================================
-*/
+"use strict";
 
 
-/* ================================================================
-   1. ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА RU / EN
-   ================================================================ */
+/* =========================
+   LANGUAGE
+========================= */
 
 const languageButtons = {
     ru: document.getElementById("lang-ru"),
     en: document.getElementById("lang-en")
 };
 
+const LANGUAGE_STORAGE_KEY = "anincraft_language";
+
 let currentLanguage = "ru";
 
 
-/**
- * Переключает интерфейс между русским и английским.
- *
- * Все языковые элементы должны иметь:
- *
- * data-lang="ru"
- * или
- * data-lang="en"
- *
- * При каждом переключении функция заново обрабатывает ВСЕ
- * элементы data-lang. Поэтому она также работает с элементами,
- * которые были добавлены JavaScript после загрузки страницы.
- */
 function setLanguage(language) {
+
     currentLanguage =
         language === "en"
             ? "en"
             : "ru";
+
 
     document.documentElement.lang =
         currentLanguage;
 
 
     /*
-     * Показываем элементы выбранного языка
-     * и скрываем элементы другого языка.
+     * Все элементы с data-lang переключаются
+     * автоматически.
      *
-     * Используем одновременно hidden и CSS-класс.
-     * Это защищает от конфликтов со старым состоянием hidden.
+     * Используем hidden + lang-hidden,
+     * чтобы не зависеть от конкретного display.
      */
     document
         .querySelectorAll("[data-lang]")
-        .forEach(element => {
+        .forEach((element) => {
 
             const isCurrentLanguage =
                 element.dataset.lang === currentLanguage;
@@ -62,11 +48,12 @@ function setLanguage(language) {
                 "lang-hidden",
                 !isCurrentLanguage
             );
+
         });
 
 
     /*
-     * Обновляем состояние кнопок RU / EN.
+     * Переключение активной кнопки языка.
      */
     languageButtons.ru.classList.toggle(
         "active",
@@ -80,29 +67,30 @@ function setLanguage(language) {
 
 
     /*
-     * Обновляем placeholder'ы форм.
+     * Локализация placeholder.
      */
     document
         .querySelectorAll(
             "[data-placeholder-ru], [data-placeholder-en]"
         )
-        .forEach(element => {
+        .forEach((element) => {
 
             const placeholder =
                 currentLanguage === "en"
                     ? element.dataset.placeholderEn
                     : element.dataset.placeholderRu;
 
+
             if (placeholder !== undefined) {
-                element.placeholder =
-                    placeholder;
+                element.placeholder = placeholder;
             }
+
         });
 
 
     /*
-     * При смене языка очищаем сообщение
-     * об ошибке комментария.
+     * Сбрасываем сообщение об ошибке
+     * комментария при смене языка.
      */
     clearCommentError();
 
@@ -111,9 +99,16 @@ function setLanguage(language) {
      * Сохраняем выбранный язык.
      */
     localStorage.setItem(
-        "anincraft_language",
+        LANGUAGE_STORAGE_KEY,
         currentLanguage
     );
+
+
+    /*
+     * После переключения языка обновляем
+     * даты комментариев.
+     */
+    renderComments();
 }
 
 
@@ -122,7 +117,9 @@ function setLanguage(language) {
  */
 languageButtons.ru.addEventListener(
     "click",
-    () => setLanguage("ru")
+    () => {
+        setLanguage("ru");
+    }
 );
 
 
@@ -131,253 +128,77 @@ languageButtons.ru.addEventListener(
  */
 languageButtons.en.addEventListener(
     "click",
-    () => setLanguage("en")
-);
-
-
-/*
- * Восстанавливаем язык после перезагрузки.
- */
-const savedLanguage =
-    localStorage.getItem(
-        "anincraft_language"
-    );
-
-setLanguage(
-    savedLanguage === "en"
-        ? "en"
-        : "ru"
-);
-
-
-/* ================================================================
-   2. ТАЙМЕР
-   ================================================================
-
-   Дата открытия:
-   1 октября 2026 года.
-
-   Если нужно изменить дату, поменяй только эту строку.
-
-   ================================================================ */
-
-const openingDate =
-    new Date(
-        "2026-10-01T00:00:00"
-    ).getTime();
-
-
-const countdown =
-    document.getElementById(
-        "countdown"
-    );
-
-const daysElement =
-    document.getElementById(
-        "days"
-    );
-
-const hoursElement =
-    document.getElementById(
-        "hours"
-    );
-
-const minutesElement =
-    document.getElementById(
-        "minutes"
-    );
-
-const secondsElement =
-    document.getElementById(
-        "seconds"
-    );
-
-
-function updateCountdown() {
-
-    const currentTime =
-        Date.now();
-
-    const difference =
-        openingDate - currentTime;
-
-
-    /*
-     * Если дата уже наступила,
-     * заменяем таймер сообщением.
-     */
-    if (difference <= 0) {
-
-        countdown.innerHTML = `
-            <div
-                class="time-box"
-                style="grid-column: 1 / -1;"
-            >
-                <span
-                    class="time-number"
-                    style="font-size: 34px;"
-                >
-                    🚀
-                </span>
-
-                <span
-                    class="time-label"
-                    data-lang="ru"
-                >
-                    AninCraft уже открывается!
-                </span>
-
-                <span
-                    class="time-label lang-hidden"
-                    data-lang="en"
-                >
-                    AninCraft is launching!
-                </span>
-            </div>
-        `;
-
-
-        /*
-         * ВАЖНО:
-         *
-         * Эти элементы созданы после первоначальной
-         * загрузки страницы.
-         *
-         * Поэтому снова запускаем общий механизм
-         * переключения языка.
-         */
-        setLanguage(
-            currentLanguage
-        );
-
-        return;
+    () => {
+        setLanguage("en");
     }
-
-
-    /*
-     * Расчёт оставшегося времени.
-     */
-
-    const days =
-        Math.floor(
-            difference /
-            (1000 * 60 * 60 * 24)
-        );
-
-    const hours =
-        Math.floor(
-            (difference /
-                (1000 * 60 * 60)) % 24
-        );
-
-    const minutes =
-        Math.floor(
-            (difference /
-                (1000 * 60)) % 60
-        );
-
-    const seconds =
-        Math.floor(
-            (difference / 1000) % 60
-        );
-
-
-    /*
-     * Выводим числа с ведущим нулём.
-     */
-
-    daysElement.textContent =
-        String(days).padStart(2, "0");
-
-    hoursElement.textContent =
-        String(hours).padStart(2, "0");
-
-    minutesElement.textContent =
-        String(minutes).padStart(2, "0");
-
-    secondsElement.textContent =
-        String(seconds).padStart(2, "0");
-}
-
-
-updateCountdown();
-
-
-setInterval(
-    updateCountdown,
-    1000
 );
 
 
-/* ================================================================
-   3. АНОНИМНЫЕ КОММЕНТАРИИ
-   ================================================================ */
+/* =========================
+   COMMENTS
+========================= */
 
 const COMMENTS_STORAGE_KEY =
     "anincraft_comments_v1";
 
 
 const commentForm =
-    document.getElementById(
-        "comment-form"
-    );
+    document.getElementById("comment-form");
+
 
 const commentName =
-    document.getElementById(
-        "comment-name"
-    );
+    document.getElementById("comment-name");
+
 
 const commentText =
-    document.getElementById(
-        "comment-text"
-    );
+    document.getElementById("comment-text");
+
 
 const commentError =
-    document.getElementById(
-        "comment-error"
-    );
+    document.getElementById("comment-error");
+
 
 const commentsList =
-    document.getElementById(
-        "comments-list"
-    );
+    document.getElementById("comments-list");
+
 
 const commentsEmpty =
-    document.getElementById(
-        "comments-empty"
-    );
+    document.getElementById("comments-empty");
 
 
-/**
- * Загружает комментарии из localStorage.
- *
- * Если localStorage содержит повреждённые данные,
- * сайт не ломается — возвращается пустой массив.
+/*
+ * Получить комментарии из localStorage.
  */
 function getComments() {
 
     try {
 
-        const stored =
+        const saved =
             localStorage.getItem(
                 COMMENTS_STORAGE_KEY
             );
 
-        if (!stored) {
+
+        if (!saved) {
             return [];
         }
 
-        const comments =
-            JSON.parse(stored);
 
-        return Array.isArray(comments)
-            ? comments
-            : [];
+        const comments =
+            JSON.parse(saved);
+
+
+        if (!Array.isArray(comments)) {
+            return [];
+        }
+
+
+        return comments;
 
     } catch (error) {
 
-        console.warn(
-            "Не удалось прочитать комментарии:",
+        console.error(
+            "Не удалось загрузить комментарии:",
             error
         );
 
@@ -386,8 +207,8 @@ function getComments() {
 }
 
 
-/**
- * Сохраняет комментарии в localStorage.
+/*
+ * Сохранить комментарии.
  */
 function saveComments(comments) {
 
@@ -402,8 +223,8 @@ function saveComments(comments) {
 
     } catch (error) {
 
-        console.warn(
-            "Не удалось сохранить комментарий:",
+        console.error(
+            "Не удалось сохранить комментарии:",
             error
         );
 
@@ -412,39 +233,42 @@ function saveComments(comments) {
 }
 
 
-/**
- * Очищает ошибку формы.
+/*
+ * Показать ошибку комментария.
  */
-function clearCommentError() {
+function showCommentError() {
 
-    if (commentError) {
-        commentError.textContent = "";
+    if (currentLanguage === "en") {
+
+        commentError.textContent =
+            "Please enter a comment.";
+
+    } else {
+
+        commentError.textContent =
+            "Введите комментарий.";
+
     }
 }
 
 
-/**
- * Показывает сообщение о пустом комментарии
- * на текущем языке.
+/*
+ * Очистить ошибку.
  */
-function showCommentError() {
+function clearCommentError() {
 
-    commentError.textContent =
-        currentLanguage === "en"
-            ? "Please enter a comment."
-            : "Введите комментарий.";
+    if (!commentError) {
+        return;
+    }
+
+    commentError.textContent = "";
 }
 
 
-/**
- * Форматирует дату комментария.
+/*
+ * Форматирование даты.
  */
 function formatCommentDate(timestamp) {
-
-    const locale =
-        currentLanguage === "en"
-            ? "en-US"
-            : "ru-RU";
 
     const date =
         new Date(timestamp);
@@ -456,7 +280,9 @@ function formatCommentDate(timestamp) {
 
 
     return new Intl.DateTimeFormat(
-        locale,
+        currentLanguage === "en"
+            ? "en-US"
+            : "ru-RU",
         {
             dateStyle: "medium",
             timeStyle: "short"
@@ -465,150 +291,171 @@ function formatCommentDate(timestamp) {
 }
 
 
-/**
- * Отрисовывает список комментариев.
- *
- * Важно:
- * пользовательский текст вставляется через textContent,
- * а НЕ через innerHTML.
- *
- * Поэтому HTML/JavaScript внутри комментария
- * не будет выполняться браузером.
+/*
+ * Отрисовка комментариев.
  */
 function renderComments() {
+
+    if (!commentsList || !commentsEmpty) {
+        return;
+    }
+
 
     const comments =
         getComments();
 
 
+    commentsList.innerHTML = "";
+
+
+    if (comments.length === 0) {
+
+        commentsEmpty.hidden = false;
+
+        commentsEmpty.classList.remove(
+            "lang-hidden"
+        );
+
+        /*
+         * Внутри commentsEmpty находятся
+         * сразу RU/EN варианты.
+         */
+        commentsEmpty
+            .querySelectorAll("[data-lang]")
+            .forEach((element) => {
+
+                const isCurrentLanguage =
+                    element.dataset.lang === currentLanguage;
+
+                element.hidden =
+                    !isCurrentLanguage;
+
+                element.classList.toggle(
+                    "lang-hidden",
+                    !isCurrentLanguage
+                );
+
+            });
+
+        return;
+    }
+
+
+    commentsEmpty.hidden = true;
+    commentsEmpty.classList.add(
+        "lang-hidden"
+    );
+
+
     /*
-     * Полностью очищаем старый список.
+     * Показываем новые комментарии сверху.
      */
-    commentsList.replaceChildren();
+    comments
+        .slice()
+        .reverse()
+        .forEach((comment) => {
+
+            const article =
+                document.createElement("article");
+
+            article.className = "comment";
 
 
-    /*
-     * Показываем сообщение "комментариев нет",
-     * если список пустой.
-     */
-    commentsEmpty.hidden =
-        comments.length > 0;
+            const header =
+                document.createElement("div");
+
+            header.className =
+                "comment-header";
 
 
-    comments.forEach(comment => {
+            const author =
+                document.createElement("span");
 
-        const article =
-            document.createElement(
-                "article"
-            );
-
-        article.className =
-            "comment";
+            author.className =
+                "comment-author";
 
 
-        const header =
-            document.createElement(
-                "div"
-            );
+            const date =
+                document.createElement("time");
 
-        header.className =
-            "comment-header";
+            date.className =
+                "comment-date";
 
 
-        const author =
-            document.createElement(
-                "span"
-            );
+            const text =
+                document.createElement("p");
 
-        author.className =
-            "comment-author";
-
-        author.textContent =
-            comment.name?.trim() ||
-            (
-                currentLanguage === "en"
-                    ? "Anonymous"
-                    : "Аноним"
-            );
+            text.className =
+                "comment-text";
 
 
-        const date =
-            document.createElement(
-                "time"
-            );
-
-        date.className =
-            "comment-date";
-
-
-        const commentDate =
-            new Date(
-                comment.createdAt
-            );
+            /*
+             * textContent используется специально:
+             * пользовательский текст не должен
+             * интерпретироваться как HTML.
+             */
+            author.textContent =
+                comment.name || getAnonymousName();
 
 
-        if (!Number.isNaN(
-            commentDate.getTime()
-        )) {
-            date.dateTime =
-                commentDate.toISOString();
-        }
+            text.textContent =
+                comment.text;
 
 
-        date.textContent =
-            formatCommentDate(
-                comment.createdAt
-            );
+            date.textContent =
+                formatCommentDate(
+                    comment.createdAt
+                );
 
 
-        const body =
-            document.createElement(
-                "p"
-            );
+            if (comment.createdAt) {
 
-        body.className =
-            "comment-text";
+                date.dateTime =
+                    new Date(
+                        comment.createdAt
+                    ).toISOString();
 
-        body.textContent =
-            comment.text || "";
+            }
 
 
-        header.append(
-            author,
-            date
-        );
+            header.appendChild(author);
+            header.appendChild(date);
 
-        article.append(
-            header,
-            body
-        );
+            article.appendChild(header);
+            article.appendChild(text);
 
-        commentsList.append(
-            article
-        );
-    });
+            commentsList.appendChild(article);
+
+        });
 }
 
 
 /*
- * Обработка отправки комментария.
+ * Имя по умолчанию.
+ */
+function getAnonymousName() {
+
+    return currentLanguage === "en"
+        ? "Anonymous"
+        : "Аноним";
+}
+
+
+/*
+ * Отправка комментария.
  */
 commentForm.addEventListener(
     "submit",
-    event => {
+    (event) => {
 
         event.preventDefault();
+
 
         clearCommentError();
 
 
         const name =
-            commentName.value.trim() ||
-            (
-                currentLanguage === "en"
-                    ? "Anonymous"
-                    : "Аноним"
-            );
+            commentName.value.trim();
 
 
         const text =
@@ -628,34 +475,56 @@ commentForm.addEventListener(
         }
 
 
-        const comments =
-            getComments();
+        /*
+         * Ограничиваем длину ещё и
+         * на уровне JavaScript.
+         */
+        const safeName =
+            name
+                .slice(0, 50);
 
 
-        comments.unshift({
+        const safeText =
+            text
+                .slice(0, 1000);
+
+
+        const comment = {
+
+            id:
+                `${Date.now()}-${Math.random()
+                    .toString(36)
+                    .slice(2, 10)}`,
 
             name:
-                name.slice(0, 60),
+                safeName || getAnonymousName(),
 
             text:
-                text.slice(0, 1000),
+                safeText,
 
             createdAt:
                 Date.now()
 
-        });
+        };
 
 
-        /*
-         * Если localStorage недоступен,
-         * сообщаем пользователю об ошибке.
-         */
-        if (!saveComments(comments)) {
+        const comments =
+            getComments();
+
+
+        comments.push(comment);
+
+
+        const saved =
+            saveComments(comments);
+
+
+        if (!saved) {
 
             commentError.textContent =
                 currentLanguage === "en"
-                    ? "The comment could not be saved in this browser."
-                    : "Не удалось сохранить комментарий в этом браузере.";
+                    ? "The comment could not be saved."
+                    : "Не удалось сохранить комментарий.";
 
             return;
         }
@@ -664,178 +533,240 @@ commentForm.addEventListener(
         /*
          * Очищаем форму.
          */
-        commentForm.reset();
+        commentName.value = "";
+        commentText.value = "";
 
 
         /*
          * Сразу показываем новый комментарий.
          */
         renderComments();
+
+
+        /*
+         * Прокручиваем к последнему
+         * добавленному комментарию.
+         */
+        const firstComment =
+            commentsList.querySelector(
+                ".comment"
+            );
+
+
+        if (firstComment) {
+
+            firstComment.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            });
+
+        }
+
     }
 );
 
 
-/*
- * Загружаем комментарии при открытии страницы.
- */
-renderComments();
+/* =========================
+   COUNTDOWN
+========================= */
+
+const countdownTarget =
+    new Date(
+        "2026-10-01T00:00:00"
+    ).getTime();
 
 
-/* ================================================================
-   4. АНИМАЦИЯ ПРИ СКРОЛЛЕ
-   ================================================================ */
-
-const revealElements =
-    document.querySelectorAll(
-        ".reveal"
-    );
+const daysElement =
+    document.getElementById("days");
 
 
-/*
- * Если браузер поддерживает IntersectionObserver,
- * используем его для появления элементов.
- */
-if ("IntersectionObserver" in window) {
-
-    const observer =
-        new IntersectionObserver(
-            (entries, observerInstance) => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        observerInstance.unobserve(
-                            entry.target
-                        );
-                    }
-                });
-            },
-            {
-                threshold: 0.12
-            }
-        );
+const hoursElement =
+    document.getElementById("hours");
 
 
-    revealElements.forEach(element => {
+const minutesElement =
+    document.getElementById("minutes");
 
-        observer.observe(
-            element
-        );
 
-    });
+const secondsElement =
+    document.getElementById("seconds");
 
-} else {
 
-    /*
-     * Запасной вариант для старых браузеров.
-     */
-    revealElements.forEach(element => {
+const countdownElement =
+    document.getElementById("countdown");
 
-        element.classList.add(
-            "visible"
-        );
 
-    });
+function padNumber(number) {
+
+    return String(number)
+        .padStart(2, "0");
 }
 
 
-/* ================================================================
-   5. ПЛАВНАЯ ПРОКРУТКА К ЯКОРЯМ
-   ================================================================ */
+function updateCountdown() {
 
-document
-    .querySelectorAll(
-        'a[href^="#"]'
-    )
-    .forEach(link => {
-
-        link.addEventListener(
-            "click",
-            function(event) {
-
-                const targetId =
-                    this.getAttribute(
-                        "href"
-                    );
+    const now =
+        Date.now();
 
 
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
+    const difference =
+        countdownTarget - now;
 
 
-                const target =
-                    document.querySelector(
-                        targetId
-                    );
+    /*
+     * Если дата уже наступила.
+     */
+    if (difference <= 0) {
+
+        daysElement.textContent = "00";
+        hoursElement.textContent = "00";
+        minutesElement.textContent = "00";
+        secondsElement.textContent = "00";
 
 
-                if (target) {
+        countdownElement.innerHTML = `
 
-                    event.preventDefault();
+            <div class="countdown-finished">
 
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
+                <p
+                    data-lang="ru"
+                >
+                    🎉 AninCraft уже должен был открыться!
+                </p>
 
-                }
+                <p
+                    data-lang="en"
+                    class="lang-hidden"
+                >
+                    🎉 AninCraft should already be live!
+                </p>
 
-            }
+            </div>
+
+        `;
+
+
+        /*
+         * Важно:
+         * элементы были созданы динамически,
+         * поэтому повторно применяем язык.
+         */
+        setLanguage(currentLanguage);
+
+        return;
+    }
+
+
+    const totalSeconds =
+        Math.floor(
+            difference / 1000
         );
 
-    });
+
+    const days =
+        Math.floor(
+            totalSeconds / 86400
+        );
 
 
-/* ================================================================
-   6. НАСТРОЙКА ССЫЛКИ НА БУДУЩИЙ САЙТ МОДОВ
-   ================================================================
+    const hours =
+        Math.floor(
+            (totalSeconds % 86400) / 3600
+        );
 
-   Сейчас используется:
 
-   https://example.com
+    const minutes =
+        Math.floor(
+            (totalSeconds % 3600) / 60
+        );
 
-   Когда появится настоящий сайт модов,
-   можно просто изменить href у элемента:
 
-   id="mods-link"
+    const seconds =
+        totalSeconds % 60;
 
-   Например:
 
-   modsLink.href = "https://твой-настоящий-сайт.ru";
+    daysElement.textContent =
+        String(days);
 
-   ================================================================ */
 
-const modsLink =
+    hoursElement.textContent =
+        padNumber(hours);
+
+
+    minutesElement.textContent =
+        padNumber(minutes);
+
+
+    secondsElement.textContent =
+        padNumber(seconds);
+}
+
+
+/*
+ * Первый запуск.
+ */
+updateCountdown();
+
+
+/*
+ * Обновление каждую секунду.
+ */
+const countdownInterval =
+    setInterval(
+        updateCountdown,
+        1000
+    );
+
+
+/* =========================
+   CURRENT YEAR
+========================= */
+
+const currentYear =
     document.getElementById(
-        "mods-link"
+        "current-year"
     );
 
 
-/*
- * Сейчас ссылка уже находится в HTML.
- *
- * Переменная оставлена для удобного изменения
- * адреса будущего сайта из JavaScript.
- */
-if (modsLink) {
+if (currentYear) {
 
-    /*
-     * Здесь ничего менять не нужно,
-     * пока настоящий сайт модов не создан.
-     */
+    currentYear.textContent =
+        new Date().getFullYear();
 
 }
 
 
-/* ================================================================
-   ГОТОВО
-   ================================================================ */
+/* =========================
+   INITIALIZATION
+========================= */
+
+function initializeSite() {
+
+    /*
+     * Восстанавливаем язык.
+     */
+    const savedLanguage =
+        localStorage.getItem(
+            LANGUAGE_STORAGE_KEY
+        );
+
+
+    setLanguage(
+        savedLanguage === "en"
+            ? "en"
+            : "ru"
+    );
+
+
+    /*
+     * Загружаем комментарии.
+     */
+    renderComments();
+
+}
+
+
+/*
+ * Запускаем сайт.
+ */
+initializeSite();
