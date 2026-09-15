@@ -2,11 +2,11 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="mitgo-verification" content="f043838a-9b2b-43c2-b2a4-bd483a25b78d">
-
-    <title>AninCraft — Моды для Minecraft</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
@@ -15,87 +15,147 @@
 
     <meta
         name="keywords"
-        content="Minecraft, моды Minecraft, Minecraft mods, моды, сборки Minecraft, Minecraft mods download, AninCraft"
+        content="Minecraft, моды Minecraft, моды, модпаки, сборки Minecraft, AninCraft"
     >
 
-    <meta name="author" content="AninCraft">
-    <meta name="robots" content="index, follow">
+    <meta
+        name="author"
+        content="AninCraft"
+    >
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="AninCraft — Моды для Minecraft">
+    <meta
+        name="mitgo-verification"
+        content="f043838a-9b2b-43c2-a2a4-bd483a25b78d"
+    >
+
+    <meta
+        property="og:title"
+        content="AninCraft — Моды для Minecraft"
+    >
+
     <meta
         property="og:description"
-        content="Моды, сборки, инструкции и новости для Minecraft. AninCraft скоро открывается!"
-    >
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://example.com">
-    <meta property="og:site_name" content="AninCraft">
-    <meta property="og:locale" content="ru_RU">
-    <meta property="og:locale:alternate" content="en_US">
-
-    <!-- Favicon -->
-    <link
-        rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⛏️%3C/text%3E%3C/svg%3E"
+        content="Будущий Minecraft-портал с модами, сборками, инструкциями и новостями."
     >
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <title>AninCraft — Моды для Minecraft</title>
+
     <link
-        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;500;600;700;800&display=swap"
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
 
 <body>
 
-<header>
+<header class="site-header">
     <div class="container header-inner">
 
-        <a href="#" class="logo" aria-label="AninCraft">
-            <span class="logo-icon">⛏️</span>
-
-            <span>
-                <span class="logo-anin">Anin</span><span class="logo-craft">Craft</span>
-            </span>
+        <a
+            href="#top"
+            class="logo"
+            aria-label="AninCraft"
+        >
+            AninCraft
         </a>
 
-        <nav class="desktop-nav" aria-label="Основная навигация">
+        <nav class="main-nav" aria-label="Основная навигация">
+            <a
+                href="#about"
+                data-lang="ru"
+            >
+                О проекте
+            </a>
 
-            <a href="#about" data-lang="ru">О проекте</a>
-            <a href="#about" data-lang="en" class="lang-hidden">About</a>
+            <a
+                href="#about"
+                data-lang="en"
+                class="lang-hidden"
+            >
+                About
+            </a>
 
-            <a href="#features" data-lang="ru">Возможности</a>
-            <a href="#features" data-lang="en" class="lang-hidden">Features</a>
+            <a
+                href="#features"
+                data-lang="ru"
+            >
+                Возможности
+            </a>
 
-            <a href="#faq" data-lang="ru">FAQ</a>
-            <a href="#faq" data-lang="en" class="lang-hidden">FAQ</a>
+            <a
+                href="#features"
+                data-lang="en"
+                class="lang-hidden"
+            >
+                Features
+            </a>
 
-            <a href="#coming-soon" data-lang="ru">Скоро</a>
-            <a href="#coming-soon" data-lang="en" class="lang-hidden">Coming soon</a>
+            <a
+                href="#faq"
+                data-lang="ru"
+            >
+                FAQ
+            </a>
 
+            <a
+                href="#faq"
+                data-lang="en"
+                class="lang-hidden"
+            >
+                FAQ
+            </a>
+
+            <a
+                href="#comments"
+                data-lang="ru"
+            >
+                Комментарии
+            </a>
+
+            <a
+                href="#comments"
+                data-lang="en"
+                class="lang-hidden"
+            >
+                Comments
+            </a>
         </nav>
 
-        <div
-            class="language-switcher"
-            aria-label="Выбор языка"
-        >
+        <div class="language-switcher" aria-label="Выбор языка">
             <button
-                class="language-button active"
-                id="lang-ru"
                 type="button"
+                id="lang-ru"
+                class="language-button active"
                 aria-label="Русский"
             >
                 RU
             </button>
 
             <button
-                class="language-button"
-                id="lang-en"
                 type="button"
+                id="lang-en"
+                class="language-button"
                 aria-label="English"
             >
                 EN
@@ -106,182 +166,195 @@
 </header>
 
 
-<main>
+<main id="top">
 
     <!-- HERO -->
     <section class="hero">
-
-        <div class="container hero-content reveal">
+        <div class="container hero-content">
 
             <div class="hero-badge">
-                ⛏️
+                <span data-lang="ru">СКОРО ОТКРЫТИЕ</span>
+                <span data-lang="en" class="lang-hidden">COMING SOON</span>
+            </div>
 
+            <h1>
                 <span data-lang="ru">
                     Будущий Minecraft-портал
                 </span>
 
                 <span data-lang="en" class="lang-hidden">
-                    Future Minecraft portal
-                </span>
-            </div>
-
-            <h1>
-                Anin<span class="hero-title-accent">Craft</span>
-
-                <br>
-
-                <span data-lang="ru">
-                    — Моды для Minecraft
-                </span>
-
-                <span data-lang="en" class="lang-hidden">
-                    — Minecraft Mods
+                    The Future Minecraft Portal
                 </span>
             </h1>
 
-            <p data-lang="ru">
-                Скоро здесь можно будет скачивать моды, сборки и инструкции.
-                Подготовься к новым приключениям!
+            <p class="hero-title">
+                AninCraft — Моды для Minecraft
             </p>
 
-            <p data-lang="en" class="lang-hidden">
-                Soon you will be able to download Minecraft mods,
-                modpacks and guides here. Get ready for new adventures!
+            <p
+                class="hero-description"
+                data-lang="ru"
+            >
+                Моды, сборки, инструкции и всё необходимое
+                для комфортной игры в Minecraft.
             </p>
 
-            <div class="hero-buttons">
+            <p
+                class="hero-description lang-hidden"
+                data-lang="en"
+            >
+                Mods, modpacks, guides and everything you need
+                for a better Minecraft experience.
+            </p>
+
+            <div class="hero-actions">
 
                 <a
-                    href="https://example.com"
-                    id="mods-link"
-                    class="btn btn-primary"
+                    href="#features"
+                    class="button button-primary"
+                    data-lang="ru"
                 >
-                    <span data-lang="ru">
-                        🚀 Перейти на сайт модов
-                    </span>
-
-                    <span data-lang="en" class="lang-hidden">
-                        🚀 Go to mods website
-                    </span>
+                    Узнать больше
                 </a>
 
                 <a
-                    href="#about"
-                    class="btn btn-secondary"
+                    href="#features"
+                    class="button button-primary lang-hidden"
+                    data-lang="en"
                 >
-                    <span data-lang="ru">
-                        Узнать больше ↓
-                    </span>
+                    Learn more
+                </a>
 
-                    <span data-lang="en" class="lang-hidden">
-                        Learn more ↓
-                    </span>
+                <a
+                    href="https://example.com"
+                    class="button button-secondary"
+                    id="mods-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-lang="ru"
+                >
+                    Моды
+                </a>
+
+                <a
+                    href="https://example.com"
+                    class="button button-secondary lang-hidden"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-lang="en"
+                >
+                    Mods
                 </a>
 
             </div>
 
         </div>
-
     </section>
 
 
-    <!-- РЕКЛАМА — TOP -->
+    <!-- TOP AD -->
     <section class="ad-section">
-
         <div class="container">
 
-            <div class="ad-box" id="ad-top">
+            <!--
+                Рекламный блок.
+                Здесь позже можно разместить код рекламной сети.
+            -->
 
-                <span class="ad-label">
-                    Реклама / Advertisement
+            <div class="ad-placeholder">
+
+                <span data-lang="ru">
+                    РЕКЛАМА
                 </span>
 
-                <div class="ad-box-inner">
+                <span data-lang="en" class="lang-hidden">
+                    ADVERTISEMENT
+                </span>
 
-                    <!--
-                        Здесь будет код рекламной сети Mitgo ID.
+            </div>
 
-                        Вставляй сюда именно рекламный код.
-                        Код верификации сайта находится в <head>.
-                    -->
+        </div>
+    </section>
 
-                    <span data-lang="ru">
-                        Место для рекламного блока
-                    </span>
 
-                    <span data-lang="en" class="lang-hidden">
-                        Advertising space
-                    </span>
+    <!-- ABOUT -->
+    <section
+        class="section"
+        id="about"
+    >
+        <div class="container">
 
+            <div class="section-heading">
+
+                <span class="section-number">
+                    01
+                </span>
+
+                <div>
+                    <h2 data-lang="ru">
+                        Что будет на AninCraft?
+                    </h2>
+
+                    <h2
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        What will be on AninCraft?
+                    </h2>
+
+                    <p data-lang="ru">
+                        Всё необходимое для Minecraft в одном месте.
+                    </p>
+
+                    <p
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        Everything you need for Minecraft in one place.
+                    </p>
                 </div>
 
             </div>
 
-        </div>
 
-    </section>
+            <div class="cards-grid">
 
+                <article class="feature-card">
 
-    <!-- ЧТО БУДЕТ НА ANINCRAFT -->
-    <section id="about">
-
-        <div class="container">
-
-            <div class="section-heading reveal">
-
-                <h2 data-lang="ru">
-                    Что будет на AninCraft?
-                </h2>
-
-                <h2 data-lang="en" class="lang-hidden">
-                    What will be on AninCraft?
-                </h2>
-
-                <p data-lang="ru">
-                    Всё необходимое для того, чтобы сделать Minecraft
-                    интереснее и разнообразнее.
-                </p>
-
-                <p data-lang="en" class="lang-hidden">
-                    Everything you need to make Minecraft
-                    more interesting and exciting.
-                </p>
-
-            </div>
-
-
-            <div class="grid grid-4">
-
-                <article class="card reveal">
-
-                    <div class="card-icon">
-                        🧩
+                    <div class="feature-icon">
+                        ⚒
                     </div>
 
                     <h3 data-lang="ru">
                         Моды
                     </h3>
 
-                    <h3 data-lang="en" class="lang-hidden">
+                    <h3
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
                         Mods
                     </h3>
 
                     <p data-lang="ru">
-                        Каталог интересных модов для Minecraft
-                        с описанием и инструкциями по установке.
+                        Каталог модов для разных версий Minecraft
+                        с описаниями и инструкциями по установке.
                     </p>
 
-                    <p data-lang="en" class="lang-hidden">
-                        A catalog of interesting Minecraft mods
-                        with descriptions and installation guides.
+                    <p
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        A catalog of mods for different Minecraft
+                        versions with descriptions and installation guides.
                     </p>
 
                 </article>
 
 
-                <article class="card reveal">
+                <article class="feature-card">
 
-                    <div class="card-icon">
+                    <div class="feature-icon">
                         📦
                     </div>
 
@@ -289,26 +362,32 @@
                         Сборки
                     </h3>
 
-                    <h3 data-lang="en" class="lang-hidden">
+                    <h3
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
                         Modpacks
                     </h3>
 
                     <p data-lang="ru">
-                        Готовые сборки для разных стилей игры —
-                        от выживания до больших приключений.
+                        Готовые сборки для быстрого старта
+                        и интересного игрового опыта.
                     </p>
 
-                    <p data-lang="en" class="lang-hidden">
-                        Ready-to-play modpacks for different
-                        playstyles, from survival to adventures.
+                    <p
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        Ready-to-use modpacks for a quick start
+                        and an interesting gaming experience.
                     </p>
 
                 </article>
 
 
-                <article class="card reveal">
+                <article class="feature-card">
 
-                    <div class="card-icon">
+                    <div class="feature-icon">
                         📖
                     </div>
 
@@ -316,26 +395,32 @@
                         Инструкции
                     </h3>
 
-                    <h3 data-lang="en" class="lang-hidden">
+                    <h3
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
                         Guides
                     </h3>
 
                     <p data-lang="ru">
-                        Простые инструкции по установке модов,
+                        Понятные инструкции по установке модов,
                         настройке Minecraft и решению проблем.
                     </p>
 
-                    <p data-lang="en" class="lang-hidden">
-                        Simple guides for installing mods,
+                    <p
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        Easy-to-follow guides for installing mods,
                         configuring Minecraft and fixing problems.
                     </p>
 
                 </article>
 
 
-                <article class="card reveal">
+                <article class="feature-card">
 
-                    <div class="card-icon">
+                    <div class="feature-icon">
                         📰
                     </div>
 
@@ -343,18 +428,24 @@
                         Новости
                     </h3>
 
-                    <h3 data-lang="en" class="lang-hidden">
+                    <h3
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
                         News
                     </h3>
 
                     <p data-lang="ru">
-                        Новые моды, обновления Minecraft
-                        и интересные события из мира игры.
+                        Новости Minecraft, обновления модов
+                        и интересные события сообщества.
                     </p>
 
-                    <p data-lang="en" class="lang-hidden">
-                        New mods, Minecraft updates and
-                        interesting news from the gaming world.
+                    <p
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        Minecraft news, mod updates
+                        and interesting community events.
                     </p>
 
                 </article>
@@ -362,332 +453,379 @@
             </div>
 
         </div>
-
     </section>
 
 
-    <!-- РЕКЛАМА — MIDDLE -->
+    <!-- MIDDLE AD -->
     <section class="ad-section">
-
         <div class="container">
 
-            <div class="ad-box" id="ad-middle">
+            <div class="ad-placeholder">
 
-                <span class="ad-label">
-                    Реклама / Advertisement
+                <span data-lang="ru">
+                    РЕКЛАМА
                 </span>
 
-                <div class="ad-box-inner">
+                <span data-lang="en" class="lang-hidden">
+                    ADVERTISEMENT
+                </span>
 
-                    <!-- Вставь код рекламной сети Mitgo ID здесь -->
+            </div>
 
-                    <span data-lang="ru">
-                        Место для рекламного блока
+        </div>
+    </section>
+
+
+    <!-- FEATURES -->
+    <section
+        class="section section-dark"
+        id="features"
+    >
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="section-number">
+                    02
+                </span>
+
+                <div>
+
+                    <h2 data-lang="ru">
+                        Почему AninCraft?
+                    </h2>
+
+                    <h2
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        Why AninCraft?
+                    </h2>
+
+                    <p data-lang="ru">
+                        Проект создаётся с упором на удобство.
+                    </p>
+
+                    <p
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        The project is being built with convenience in mind.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="advantages">
+
+                <div class="advantage">
+
+                    <span class="advantage-number">
+                        01
                     </span>
 
-                    <span data-lang="en" class="lang-hidden">
-                        Advertising space
+                    <div>
+
+                        <h3 data-lang="ru">
+                            Просто
+                        </h3>
+
+                        <h3
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Simple
+                        </h3>
+
+                        <p data-lang="ru">
+                            Понятная навигация и минимум лишних элементов.
+                        </p>
+
+                        <p
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Clear navigation and no unnecessary elements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="advantage">
+
+                    <span class="advantage-number">
+                        02
                     </span>
+
+                    <div>
+
+                        <h3 data-lang="ru">
+                            Быстро
+                        </h3>
+
+                        <h3
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Fast
+                        </h3>
+
+                        <p data-lang="ru">
+                            Лёгкий сайт с быстрой загрузкой страниц.
+                        </p>
+
+                        <p
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            A lightweight website with fast page loading.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="advantage">
+
+                    <span class="advantage-number">
+                        03
+                    </span>
+
+                    <div>
+
+                        <h3 data-lang="ru">
+                            Полезно
+                        </h3>
+
+                        <h3
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Useful
+                        </h3>
+
+                        <p data-lang="ru">
+                            Только полезные материалы для игроков Minecraft.
+                        </p>
+
+                        <p
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Only useful content for Minecraft players.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="advantage">
+
+                    <span class="advantage-number">
+                        04
+                    </span>
+
+                    <div>
+
+                        <h3 data-lang="ru">
+                            Развитие
+                        </h3>
+
+                        <h3
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Growing
+                        </h3>
+
+                        <p data-lang="ru">
+                            Сайт будет постепенно пополняться новыми возможностями.
+                        </p>
+
+                        <p
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            The website will gradually gain new features.
+                        </p>
+
+                    </div>
 
                 </div>
 
             </div>
 
         </div>
-
     </section>
 
 
-    <!-- ПОЧЕМУ ANINCRAFT -->
-    <section
-        class="benefits"
-        id="features"
-    >
+    <!-- COUNTDOWN -->
+    <section class="section countdown-section">
 
         <div class="container">
 
-            <div class="section-heading reveal">
+            <div class="section-heading centered">
 
-                <h2 data-lang="ru">
-                    Почему AninCraft?
-                </h2>
+                <span class="section-number">
+                    03
+                </span>
 
-                <h2 data-lang="en" class="lang-hidden">
-                    Why AninCraft?
-                </h2>
-
-                <p data-lang="ru">
-                    Хотим сделать сайт удобным как для новичков,
-                    так и для опытных игроков.
-                </p>
-
-                <p data-lang="en" class="lang-hidden">
-                    We want to make the website convenient
-                    for both beginners and experienced players.
-                </p>
-
-            </div>
-
-
-            <div class="grid grid-4">
-
-                <article class="card benefit reveal">
-
-                    <div class="big-icon">
-                        💚
-                    </div>
-
-                    <h3 data-lang="ru">
-                        Бесплатно
-                    </h3>
-
-                    <h3 data-lang="en" class="lang-hidden">
-                        Free
-                    </h3>
-
-                    <p data-lang="ru">
-                        Основные материалы и полезные ресурсы
-                        будут доступны бесплатно.
-                    </p>
-
-                    <p data-lang="en" class="lang-hidden">
-                        Main materials and useful resources
-                        will be available for free.
-                    </p>
-
-                </article>
-
-
-                <article class="card benefit reveal">
-
-                    <div class="big-icon">
-                        🛡️
-                    </div>
-
-                    <h3 data-lang="ru">
-                        Безопасно
-                    </h3>
-
-                    <h3 data-lang="en" class="lang-hidden">
-                        Safe
-                    </h3>
-
-                    <p data-lang="ru">
-                        Стараемся публиковать понятные материалы
-                        без сомнительных загрузок.
-                    </p>
-
-                    <p data-lang="en" class="lang-hidden">
-                        We aim to provide clear materials
-                        without suspicious downloads.
-                    </p>
-
-                </article>
-
-
-                <article class="card benefit reveal">
-
-                    <div class="big-icon">
-                        ⚡
-                    </div>
-
-                    <h3 data-lang="ru">
-                        Быстро
-                    </h3>
-
-                    <h3 data-lang="en" class="lang-hidden">
-                        Fast
-                    </h3>
-
-                    <p data-lang="ru">
-                        Минимум лишнего — быстрый доступ
-                        к нужной информации.
-                    </p>
-
-                    <p data-lang="en" class="lang-hidden">
-                        No unnecessary clutter — quick access
-                        to the information you need.
-                    </p>
-
-                </article>
-
-
-                <article class="card benefit reveal">
-
-                    <div class="big-icon">
-                        🔄
-                    </div>
-
-                    <h3 data-lang="ru">
-                        Обновления
-                    </h3>
-
-                    <h3 data-lang="en" class="lang-hidden">
-                        Updates
-                    </h3>
-
-                    <p data-lang="ru">
-                        Новые моды, сборки и материалы
-                        будут появляться регулярно.
-                    </p>
-
-                    <p data-lang="en" class="lang-hidden">
-                        New mods, modpacks and useful materials
-                        will be added regularly.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- СКОРО ОТКРЫТИЕ -->
-    <section id="coming-soon">
-
-        <div class="container">
-
-            <div class="opening-box reveal">
-
-                <div class="section-heading">
+                <div>
 
                     <h2 data-lang="ru">
                         🚀 Скоро открытие
                     </h2>
 
-                    <h2 data-lang="en" class="lang-hidden">
-                        🚀 Coming Soon
+                    <h2
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        🚀 Launching soon
                     </h2>
 
                     <p data-lang="ru">
-                        Мы готовим AninCraft. Здесь появится
-                        полноценный каталог модов, сборок
-                        и полезных материалов для Minecraft.
+                        Мы готовим сайт к запуску.
                     </p>
 
-                    <p data-lang="en" class="lang-hidden">
-                        We are preparing AninCraft.
-                        A full catalog of Minecraft mods,
-                        modpacks and useful guides will appear here.
+                    <p
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        We are preparing the website for launch.
                     </p>
 
                 </div>
 
-
-                <div
-                    class="countdown"
-                    id="countdown"
-                >
-
-                    <div class="time-box">
-
-                        <span
-                            class="time-number"
-                            id="days"
-                        >
-                            00
-                        </span>
-
-                        <span
-                            class="time-label"
-                            data-lang="ru"
-                        >
-                            дней
-                        </span>
-
-                        <span
-                            class="time-label"
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            days
-                        </span>
-
-                    </div>
+            </div>
 
 
-                    <div class="time-box">
+            <div
+                class="countdown"
+                id="countdown"
+                aria-live="polite"
+            >
 
-                        <span
-                            class="time-number"
-                            id="hours"
-                        >
-                            00
-                        </span>
+                <div class="time-box">
 
-                        <span
-                            class="time-label"
-                            data-lang="ru"
-                        >
-                            часов
-                        </span>
+                    <span
+                        class="time-value"
+                        id="days"
+                    >
+                        00
+                    </span>
 
-                        <span
-                            class="time-label"
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            hours
-                        </span>
+                    <span
+                        class="time-label"
+                        data-lang="ru"
+                    >
+                        дней
+                    </span>
 
-                    </div>
+                    <span
+                        class="time-label lang-hidden"
+                        data-lang="en"
+                    >
+                        days
+                    </span>
 
-
-                    <div class="time-box">
-
-                        <span
-                            class="time-number"
-                            id="minutes"
-                        >
-                            00
-                        </span>
-
-                        <span
-                            class="time-label"
-                            data-lang="ru"
-                        >
-                            минут
-                        </span>
-
-                        <span
-                            class="time-label"
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            minutes
-                        </span>
-
-                    </div>
+                </div>
 
 
-                    <div class="time-box">
+                <div class="time-separator">
+                    :
+                </div>
 
-                        <span
-                            class="time-number"
-                            id="seconds"
-                        >
-                            00
-                        </span>
 
-                        <span
-                            class="time-label"
-                            data-lang="ru"
-                        >
-                            секунд
-                        </span>
+                <div class="time-box">
 
-                        <span
-                            class="time-label"
-                            data-lang="en"
-                            class="lang-hidden"
-                        >
-                            seconds
-                        </span>
+                    <span
+                        class="time-value"
+                        id="hours"
+                    >
+                        00
+                    </span>
 
-                    </div>
+                    <span
+                        class="time-label"
+                        data-lang="ru"
+                    >
+                        часов
+                    </span>
+
+                    <span
+                        class="time-label lang-hidden"
+                        data-lang="en"
+                    >
+                        hours
+                    </span>
+
+                </div>
+
+
+                <div class="time-separator">
+                    :
+                </div>
+
+
+                <div class="time-box">
+
+                    <span
+                        class="time-value"
+                        id="minutes"
+                    >
+                        00
+                    </span>
+
+                    <span
+                        class="time-label"
+                        data-lang="ru"
+                    >
+                        минут
+                    </span>
+
+                    <span
+                        class="time-label lang-hidden"
+                        data-lang="en"
+                    >
+                        minutes
+                    </span>
+
+                </div>
+
+
+                <div class="time-separator">
+                    :
+                </div>
+
+
+                <div class="time-box">
+
+                    <span
+                        class="time-value"
+                        id="seconds"
+                    >
+                        00
+                    </span>
+
+                    <span
+                        class="time-label"
+                        data-lang="ru"
+                    >
+                        секунд
+                    </span>
+
+                    <span
+                        class="time-label lang-hidden"
+                        data-lang="en"
+                    >
+                        seconds
+                    </span>
 
                 </div>
 
@@ -699,234 +837,302 @@
 
 
     <!-- FAQ -->
-    <section id="faq">
+    <section
+        class="section"
+        id="faq"
+    >
 
         <div class="container">
 
-            <div class="section-heading reveal">
+            <div class="section-heading centered">
 
-                <h2 data-lang="ru">
-                    Частые вопросы
-                </h2>
-
-                <h2 data-lang="en" class="lang-hidden">
-                    Frequently Asked Questions
-                </h2>
-
-                <p data-lang="ru">
-                    Пока проект готовится, отвечаем
-                    на самые популярные вопросы.
-                </p>
-
-                <p data-lang="en" class="lang-hidden">
-                    While the project is being prepared,
-                    here are answers to common questions.
-                </p>
-
-            </div>
-
-
-            <div class="faq">
-
-                <details class="reveal">
-
-                    <summary data-lang="ru">
-                        Когда откроется AninCraft?
-                    </summary>
-
-                    <summary data-lang="en" class="lang-hidden">
-                        When will AninCraft launch?
-                    </summary>
-
-                    <p data-lang="ru">
-                        Мы готовим проект к запуску.
-                        Следите за обновлениями — здесь появится
-                        полноценный каталог Minecraft-модов.
-                    </p>
-
-                    <p data-lang="en" class="lang-hidden">
-                        We are preparing the project for launch.
-                        Stay tuned — a full Minecraft mod catalog
-                        will appear here.
-                    </p>
-
-                </details>
-
-
-                <details class="reveal">
-
-                    <summary data-lang="ru">
-                        Моды будут бесплатными?
-                    </summary>
-
-                    <summary data-lang="en" class="lang-hidden">
-                        Will the mods be free?
-                    </summary>
-
-                    <p data-lang="ru">
-                        Планируется бесплатный доступ к основным
-                        материалам сайта. Условия для конкретных
-                        материалов будут указаны отдельно.
-                    </p>
-
-                    <p data-lang="en" class="lang-hidden">
-                        The main website materials are planned
-                        to be available for free. Specific conditions
-                        will be listed separately.
-                    </p>
-
-                </details>
-
-
-                <details class="reveal">
-
-                    <summary data-lang="ru">
-                        Для каких версий Minecraft будут моды?
-                    </summary>
-
-                    <summary data-lang="en" class="lang-hidden">
-                        Which Minecraft versions will be supported?
-                    </summary>
-
-                    <p data-lang="ru">
-                        Планируется поддержка популярных версий
-                        Minecraft. Для каждого мода будет указана
-                        совместимая версия.
-                    </p>
-
-                    <p data-lang="en" class="lang-hidden">
-                        Popular Minecraft versions are planned
-                        to be supported. Each mod will show
-                        its compatible version.
-                    </p>
-
-                </details>
-
-
-                <details class="reveal">
-
-                    <summary data-lang="ru">
-                        Можно ли предложить свой мод?
-                    </summary>
-
-                    <summary data-lang="en" class="lang-hidden">
-                        Can I submit my own mod?
-                    </summary>
-
-                    <p data-lang="ru">
-                        Да. После запуска сайта появится удобный
-                        способ предложить материал для публикации.
-                    </p>
-
-                    <p data-lang="en" class="lang-hidden">
-                        Yes. After launch, there will be a convenient
-                        way to submit content for publication.
-                    </p>
-
-                </details>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- РЕКЛАМА — BOTTOM -->
-    <section class="ad-section">
-
-        <div class="container">
-
-            <div class="ad-box" id="ad-bottom">
-
-                <span class="ad-label">
-                    Реклама / Advertisement
+                <span class="section-number">
+                    04
                 </span>
 
-                <div class="ad-box-inner">
+                <div>
 
-                    <!-- Вставь код рекламной сети Mitgo ID здесь -->
+                    <h2 data-lang="ru">
+                        Частые вопросы
+                    </h2>
 
-                    <span data-lang="ru">
-                        Место для рекламного блока
-                    </span>
+                    <h2
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        Frequently Asked Questions
+                    </h2>
 
-                    <span data-lang="en" class="lang-hidden">
-                        Advertising space
-                    </span>
+                    <p data-lang="ru">
+                        Пока проект готовится, отвечаем на самые популярные вопросы.
+                    </p>
+
+                    <p
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        While the project is being prepared, here are answers to common questions.
+                    </p>
 
                 </div>
 
             </div>
 
+
+            <div class="faq-list">
+
+                <details class="faq-item">
+
+                    <summary>
+
+                        <span
+                            data-lang="ru"
+                        >
+                            Когда откроется AninCraft?
+                        </span>
+
+                        <span
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            When will AninCraft launch?
+                        </span>
+
+                        <span class="faq-plus">
+                            +
+                        </span>
+
+                    </summary>
+
+                    <div class="faq-answer">
+
+                        <p data-lang="ru">
+                            Мы планируем открыть AninCraft после завершения
+                            основных разделов сайта и проверки всех функций.
+                        </p>
+
+                        <p
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            We plan to launch AninCraft after the main sections
+                            of the website are completed and all features are tested.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+                <details class="faq-item">
+
+                    <summary>
+
+                        <span data-lang="ru">
+                            Моды будут бесплатными?
+                        </span>
+
+                        <span
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Will the mods be free?
+                        </span>
+
+                        <span class="faq-plus">
+                            +
+                        </span>
+
+                    </summary>
+
+                    <div class="faq-answer">
+
+                        <p data-lang="ru">
+                            AninCraft ориентирован на удобный каталог модов
+                            и материалов. Условия распространения будут указаны
+                            отдельно для каждого материала.
+                        </p>
+
+                        <p
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            AninCraft is focused on providing a convenient catalog
+                            of mods and resources. Distribution terms will be listed
+                            separately for each resource.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+                <details class="faq-item">
+
+                    <summary>
+
+                        <span data-lang="ru">
+                            Для каких версий Minecraft будут моды?
+                        </span>
+
+                        <span
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Which Minecraft versions will be supported?
+                        </span>
+
+                        <span class="faq-plus">
+                            +
+                        </span>
+
+                    </summary>
+
+                    <div class="faq-answer">
+
+                        <p data-lang="ru">
+                            Планируется поддержка популярных версий Minecraft.
+                            Точные версии будут указаны в карточках модов.
+                        </p>
+
+                        <p
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Popular Minecraft versions are planned to be supported.
+                            Exact versions will be listed on each mod page.
+                        </p>
+
+                    </div>
+
+                </details>
+
+
+                <details class="faq-item">
+
+                    <summary>
+
+                        <span data-lang="ru">
+                            Можно ли предложить свой мод?
+                        </span>
+
+                        <span
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Can I submit my own mod?
+                        </span>
+
+                        <span class="faq-plus">
+                            +
+                        </span>
+
+                    </summary>
+
+                    <div class="faq-answer">
+
+                        <p data-lang="ru">
+                            Да. После запуска сайта планируется возможность
+                            предложить мод или другой полезный материал.
+                        </p>
+
+                        <p
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Yes. After the website launches, we plan to allow
+                            users to submit mods and other useful resources.
+                        </p>
+
+                    </div>
+
+                </details>
+
+            </div>
+
         </div>
 
     </section>
 
 
-    <!-- АНОНИМНЫЕ КОММЕНТАРИИ -->
-    <section id="comments">
+    <!-- COMMENTS -->
+    <section
+        class="section comments-section"
+        id="comments"
+    >
 
         <div class="container">
 
-            <div class="section-heading reveal">
+            <div class="section-heading">
 
-                <h2 data-lang="ru">
-                    Комментарии
-                </h2>
+                <span class="section-number">
+                    05
+                </span>
 
-                <h2 data-lang="en" class="lang-hidden">
-                    Comments
-                </h2>
+                <div>
 
-                <p data-lang="ru">
-                    Оставьте сообщение без регистрации.
-                    Имя можно не указывать.
-                </p>
+                    <h2 data-lang="ru">
+                        Комментарии
+                    </h2>
 
-                <p data-lang="en" class="lang-hidden">
-                    Leave a message without registration.
-                    A name is optional.
-                </p>
+                    <h2
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        Comments
+                    </h2>
+
+                    <p data-lang="ru">
+                        Оставьте свой комментарий — регистрация не требуется.
+                    </p>
+
+                    <p
+                        data-lang="en"
+                        class="lang-hidden"
+                    >
+                        Leave a comment — no registration required.
+                    </p>
+
+                </div>
 
             </div>
 
 
-            <div class="comments-layout">
+            <div class="comments-box">
 
                 <form
-                    class="card comments-form reveal"
                     id="comment-form"
+                    class="comment-form"
+                    autocomplete="off"
                 >
 
-                    <div class="form-field">
+                    <div class="form-group">
 
-                        <label for="comment-name">
-
-                            <span data-lang="ru">
-                                Имя
-                            </span>
-
-                            <span data-lang="en" class="lang-hidden">
-                                Name
-                            </span>
-
-                            <small data-lang="ru">
+                        <label
+                            for="comment-name"
+                            data-lang="ru"
+                        >
+                            Имя
+                            <span class="optional">
                                 необязательно
-                            </small>
+                            </span>
+                        </label>
 
-                            <small data-lang="en" class="lang-hidden">
+                        <label
+                            for="comment-name"
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Name
+                            <span class="optional">
                                 optional
-                            </small>
-
+                            </span>
                         </label>
 
                         <input
-                            id="comment-name"
-                            name="name"
                             type="text"
-                            maxlength="60"
-                            autocomplete="name"
+                            id="comment-name"
+                            maxlength="50"
                             placeholder="Аноним"
                             data-placeholder-ru="Аноним"
                             data-placeholder-en="Anonymous"
@@ -935,81 +1141,92 @@
                     </div>
 
 
-                    <div class="form-field">
+                    <div class="form-group">
 
-                        <label for="comment-text">
+                        <label
+                            for="comment-text"
+                            data-lang="ru"
+                        >
+                            Комментарий
+                        </label>
 
-                            <span data-lang="ru">
-                                Комментарий
-                            </span>
-
-                            <span data-lang="en" class="lang-hidden">
-                                Comment
-                            </span>
-
+                        <label
+                            for="comment-text"
+                            data-lang="en"
+                            class="lang-hidden"
+                        >
+                            Comment
                         </label>
 
                         <textarea
                             id="comment-text"
-                            name="comment"
                             rows="5"
                             maxlength="1000"
                             required
-                            data-placeholder-ru="Напишите комментарий..."
-                            data-placeholder-en="Write a comment..."
+                            data-placeholder-ru="Напишите свой комментарий..."
+                            data-placeholder-en="Write your comment..."
+                            placeholder="Напишите свой комментарий..."
                         ></textarea>
 
                     </div>
 
 
-                    <p
-                        class="form-error"
-                        id="comment-error"
-                        role="alert"
-                        aria-live="polite"
-                    ></p>
-
-
-                    <button
-                        class="btn btn-primary"
-                        type="submit"
+                    <div
+                        class="comment-form-footer"
                     >
 
-                        <span data-lang="ru">
-                            Отправить
-                        </span>
+                        <p
+                            id="comment-error"
+                            class="comment-error"
+                            role="alert"
+                            aria-live="polite"
+                        ></p>
 
-                        <span data-lang="en" class="lang-hidden">
-                            Send
-                        </span>
+                        <button
+                            type="submit"
+                            class="button button-primary"
+                        >
 
-                    </button>
+                            <span data-lang="ru">
+                                Отправить
+                            </span>
+
+                            <span
+                                data-lang="en"
+                                class="lang-hidden"
+                            >
+                                Send
+                            </span>
+
+                        </button>
+
+                    </div>
 
                 </form>
 
 
-                <div class="comments-list-wrap">
+                <div
+                    id="comments-list"
+                    class="comments-list"
+                    aria-live="polite"
+                ></div>
 
-                    <div
-                        class="comments-list"
-                        id="comments-list"
-                        aria-live="polite"
-                    ></div>
 
-                    <p
-                        class="comments-empty card"
-                        id="comments-empty"
+                <div
+                    id="comments-empty"
+                    class="comments-empty"
+                >
+
+                    <span data-lang="ru">
+                        Пока комментариев нет. Будьте первым!
+                    </span>
+
+                    <span
+                        data-lang="en"
+                        class="lang-hidden"
                     >
-
-                        <span data-lang="ru">
-                            Пока комментариев нет. Будьте первым!
-                        </span>
-
-                        <span data-lang="en" class="lang-hidden">
-                            No comments yet. Be the first!
-                        </span>
-
-                    </p>
+                        There are no comments yet. Be the first!
+                    </span>
 
                 </div>
 
@@ -1019,41 +1236,62 @@
 
     </section>
 
+
+    <!-- BOTTOM AD -->
+    <section class="ad-section">
+        <div class="container">
+
+            <div class="ad-placeholder">
+
+                <span data-lang="ru">
+                    РЕКЛАМА
+                </span>
+
+                <span data-lang="en" class="lang-hidden">
+                    ADVERTISEMENT
+                </span>
+
+            </div>
+
+        </div>
+    </section>
+
 </main>
 
 
-<!-- FOOTER -->
-<footer>
+<footer class="site-footer">
 
     <div class="container footer-inner">
 
-        <div>
-            © 2026 AninCraft
-        </div>
+        <p>
+            © <span id="current-year"></span> AninCraft
+        </p>
 
-        <div class="footer-links">
+        <p data-lang="ru">
+            Сделано с душой
+        </p>
 
-            <!-- Заглушка — позже поставь настоящий URL политики -->
-            <a
-                href="#"
-                data-lang="ru"
-            >
-                Политика конфиденциальности
-            </a>
+        <p
+            data-lang="en"
+            class="lang-hidden"
+        >
+            Made with care
+        </p>
 
-            <a
-                href="#"
-                data-lang="en"
-                class="lang-hidden"
-            >
-                Privacy Policy
-            </a>
+        <a
+            href="mailto:mail@example.com"
+            data-lang="ru"
+        >
+            Связаться
+        </a>
 
-            <a href="mailto:mail@example.com">
-                mail@example.com
-            </a>
-
-        </div>
+        <a
+            href="mailto:mail@example.com"
+            data-lang="en"
+            class="lang-hidden"
+        >
+            Contact
+        </a>
 
     </div>
 
