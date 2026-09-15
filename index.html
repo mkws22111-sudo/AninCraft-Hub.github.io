@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="mitgo-verification" content="f043838a-9b2b-43c2-b2a4-bd483a25b78d" />
+
+    <meta name="mitgo-verification" content="f043838a-9b2b-43c2-b2a4-bd483a25b78d">
+
     <title>AninCraft — Моды для Minecraft</title>
 
     <meta
@@ -29,8 +31,6 @@
     <meta property="og:url" content="https://example.com">
     <meta property="og:site_name" content="AninCraft">
     <meta property="og:locale" content="ru_RU">
-
-    <!-- English Open Graph -->
     <meta property="og:locale:alternate" content="en_US">
 
     <!-- Favicon -->
@@ -47,901 +47,10 @@
         rel="stylesheet"
     >
 
-    <style>
-        :root {
-            --bg: #0d120e;
-            --bg-2: #111811;
-            --bg-3: #172017;
-            --card: #192219;
-            --card-hover: #202b20;
-
-            --green: #55c95b;
-            --green-light: #8bea8f;
-            --green-dark: #348e3c;
-
-            --brown: #795548;
-            --brown-dark: #4b3529;
-
-            --stone: #777f77;
-
-            --text: #f1f5f1;
-            --muted: #a9b3a9;
-
-            --border: rgba(160, 180, 160, 0.18);
-
-            --shadow:
-                0 15px 45px rgba(0, 0, 0, 0.28);
-
-            --radius: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-width: 320px;
-            overflow-x: hidden;
-
-            font-family:
-                "Rubik",
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-
-            color: var(--text);
-            background:
-                radial-gradient(
-                    circle at 10% 5%,
-                    rgba(85, 201, 91, 0.11),
-                    transparent 27%
-                ),
-                radial-gradient(
-                    circle at 90% 20%,
-                    rgba(121, 85, 72, 0.13),
-                    transparent 28%
-                ),
-                var(--bg);
-
-            line-height: 1.6;
-        }
-
-        /* Лёгкая пиксельная сетка */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-
-            opacity: 0.035;
-
-            background-image:
-                linear-gradient(
-                    rgba(255, 255, 255, 0.9) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(255, 255, 255, 0.9) 1px,
-                    transparent 1px
-                );
-
-            background-size: 32px 32px;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button {
-            font: inherit;
-        }
-
-        img {
-            max-width: 100%;
-        }
-
-        .container {
-            width: min(1120px, calc(100% - 32px));
-            margin: 0 auto;
-        }
-
-        /* =========================================================
-           HEADER
-           ========================================================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            border-bottom: 1px solid var(--border);
-
-            background: rgba(13, 18, 14, 0.91);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-
-        .header-inner {
-            min-height: 70px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 15px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            font-size: 20px;
-            font-weight: 800;
-
-            white-space: nowrap;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 10px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #70dc75,
-                    #328f3a
-                );
-
-            box-shadow:
-                inset 0 -4px rgba(0, 0, 0, 0.2),
-                0 5px 18px rgba(63, 174, 71, 0.14);
-
-            font-size: 22px;
-        }
-
-        .logo-anin {
-            color: var(--text);
-        }
-
-        .logo-craft {
-            color: var(--green-light);
-        }
-
-        .desktop-nav {
-            display: none;
-            align-items: center;
-            gap: 22px;
-        }
-
-        .desktop-nav a {
-            color: var(--muted);
-            font-size: 14px;
-            font-weight: 500;
-
-            transition:
-                color 0.2s ease,
-                transform 0.2s ease;
-        }
-
-        .desktop-nav a:hover {
-            color: var(--green-light);
-            transform: translateY(-1px);
-        }
-
-        /* Переключатель языка */
-        .language-switcher {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-
-            padding: 4px;
-
-            border: 1px solid var(--border);
-            border-radius: 10px;
-
-            background: rgba(255, 255, 255, 0.035);
-        }
-
-        .language-button {
-            min-width: 38px;
-            min-height: 32px;
-
-            padding: 0 8px;
-
-            border: 0;
-            border-radius: 7px;
-
-            color: var(--muted);
-            background: transparent;
-
-            cursor: pointer;
-
-            font-size: 12px;
-            font-weight: 700;
-
-            transition:
-                background 0.2s ease,
-                color 0.2s ease;
-        }
-
-        .language-button:hover {
-            color: var(--text);
-        }
-
-        .language-button.active {
-            color: #081008;
-            background: var(--green);
-        }
-
-        /* =========================================================
-           HERO
-           ========================================================= */
-
-        .hero {
-            position: relative;
-
-            min-height: 650px;
-
-            display: flex;
-            align-items: center;
-
-            padding: 80px 0 70px;
-
-            text-align: center;
-        }
-
-        .hero::after {
-            content: "";
-
-            position: absolute;
-
-            left: 50%;
-            bottom: 10px;
-
-            width: 180px;
-            height: 4px;
-
-            transform: translateX(-50%);
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    var(--green),
-                    transparent
-                );
-
-            opacity: 0.45;
-        }
-
-        .hero-content {
-            max-width: 880px;
-            margin: 0 auto;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-
-            margin-bottom: 25px;
-            padding: 8px 14px;
-
-            border: 1px solid rgba(85, 201, 91, 0.3);
-            border-radius: 999px;
-
-            color: var(--green-light);
-            background: rgba(85, 201, 91, 0.07);
-
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .hero h1 {
-            margin-bottom: 25px;
-
-            font-family: "Press Start 2P", monospace;
-
-            font-size: clamp(25px, 6vw, 55px);
-            line-height: 1.45;
-
-            text-shadow:
-                0 5px 0 rgba(0, 0, 0, 0.28);
-        }
-
-        .hero-title-accent {
-            color: var(--green);
-        }
-
-        .hero p {
-            max-width: 730px;
-            margin: 0 auto;
-
-            color: var(--muted);
-
-            font-size: clamp(16px, 2.4vw, 20px);
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-
-            max-width: 540px;
-
-            margin: 34px auto 0;
-        }
-
-        .btn {
-            min-height: 52px;
-
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            padding: 0 24px;
-
-            border: 1px solid transparent;
-            border-radius: 12px;
-
-            font-weight: 700;
-
-            cursor: pointer;
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease,
-                background 0.2s ease,
-                border-color 0.2s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-primary {
-            color: #071008;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #78e47d,
-                    #43b94c
-                );
-
-            box-shadow:
-                0 12px 28px rgba(67, 185, 76, 0.18);
-        }
-
-        .btn-primary:hover {
-            box-shadow:
-                0 16px 35px rgba(67, 185, 76, 0.28);
-        }
-
-        .btn-secondary {
-            color: var(--text);
-
-            border-color: var(--border);
-
-            background: rgba(255, 255, 255, 0.035);
-        }
-
-        .btn-secondary:hover {
-            border-color: rgba(85, 201, 91, 0.35);
-            background: rgba(85, 201, 91, 0.07);
-        }
-
-        /* =========================================================
-           SECTIONS
-           ========================================================= */
-
-        section {
-            padding: 75px 0;
-        }
-
-        .section-heading {
-            max-width: 720px;
-
-            margin: 0 auto 40px;
-
-            text-align: center;
-        }
-
-        .section-heading h2 {
-            margin-bottom: 12px;
-
-            font-size: clamp(26px, 5vw, 37px);
-            line-height: 1.25;
-        }
-
-        .section-heading p {
-            color: var(--muted);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-
-        /* =========================================================
-           CARDS
-           ========================================================= */
-
-        .card {
-            padding: 25px;
-
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(28, 39, 28, 0.96),
-                    rgba(19, 27, 19, 0.96)
-                );
-
-            box-shadow: var(--shadow);
-
-            transition:
-                transform 0.25s ease,
-                border-color 0.25s ease,
-                background 0.25s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-
-            border-color:
-                rgba(85, 201, 91, 0.34);
-
-            background: var(--card-hover);
-        }
-
-        .card-icon {
-            width: 54px;
-            height: 54px;
-
-            display: grid;
-            place-items: center;
-
-            margin-bottom: 18px;
-
-            border: 1px solid rgba(85, 201, 91, 0.16);
-            border-radius: 14px;
-
-            background:
-                rgba(85, 201, 91, 0.09);
-
-            font-size: 28px;
-        }
-
-        .card h3 {
-            margin-bottom: 8px;
-            font-size: 20px;
-        }
-
-        .card p {
-            color: var(--muted);
-            font-size: 15px;
-        }
-
-        /* =========================================================
-           BENEFITS
-           ========================================================= */
-
-        .benefits {
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-
-            background:
-                rgba(255, 255, 255, 0.018);
-        }
-
-        .benefit {
-            text-align: center;
-        }
-
-        .benefit .big-icon {
-            margin-bottom: 12px;
-            font-size: 36px;
-        }
-
-        .benefit h3 {
-            margin-bottom: 7px;
-        }
-
-        .benefit p {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        /* =========================================================
-           AD BLOCKS
-           ========================================================= */
-
-        .ad-section {
-            padding: 28px 0;
-        }
-
-        .ad-box {
-            position: relative;
-
-            min-height: 120px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border: 1px dashed rgba(160, 175, 160, 0.3);
-            border-radius: 14px;
-
-            background:
-                rgba(255, 255, 255, 0.022);
-
-            color: #788278;
-
-            font-size: 12px;
-
-            text-align: center;
-        }
-
-        .ad-label {
-            position: absolute;
-
-            top: -10px;
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            padding: 0 9px;
-
-            color: #737d73;
-
-            background: var(--bg);
-
-            font-size: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .ad-box-inner {
-            opacity: 0.7;
-        }
-
-        /* =========================================================
-           COUNTDOWN
-           ========================================================= */
-
-        .opening-box {
-            max-width: 900px;
-
-            margin: 0 auto;
-            padding: 35px 20px;
-
-            border:
-                1px solid rgba(85, 201, 91, 0.25);
-
-            border-radius: 20px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(85, 201, 91, 0.08),
-                    rgba(121, 85, 72, 0.07)
-                ),
-                var(--card);
-
-            box-shadow: var(--shadow);
-
-            text-align: center;
-        }
-
-        .opening-box .section-heading {
-            margin-bottom: 0;
-        }
-
-        .countdown {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-
-            max-width: 620px;
-
-            margin: 30px auto 0;
-        }
-
-        .time-box {
-            padding: 18px 10px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 12px;
-
-            background:
-                rgba(0, 0, 0, 0.24);
-        }
-
-        .time-number {
-            display: block;
-
-            color: var(--green-light);
-
-            font-size: 30px;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        .time-label {
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        /* =========================================================
-           FAQ
-           ========================================================= */
-
-        .faq {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        details {
-            margin-bottom: 12px;
-
-            overflow: hidden;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 12px;
-
-            background: var(--card);
-        }
-
-        summary {
-            position: relative;
-
-            padding: 19px 50px 19px 20px;
-
-            cursor: pointer;
-
-            font-weight: 600;
-
-            list-style: none;
-        }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        summary::after {
-            content: "+";
-
-            position: absolute;
-
-            right: 20px;
-            top: 50%;
-
-            transform: translateY(-50%);
-
-            color: var(--green);
-
-            font-size: 22px;
-            font-weight: 400;
-        }
-
-        details[open] summary::after {
-            content: "−";
-        }
-
-        details p {
-            padding: 0 20px 20px;
-
-            color: var(--muted);
-            font-size: 15px;
-        }
-
-        /* =========================================================
-           FOOTER
-           ========================================================= */
-
-        footer {
-            padding: 35px 0;
-
-            border-top: 1px solid var(--border);
-
-            background: #090d09;
-        }
-
-        .footer-inner {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            gap: 12px;
-
-            color: var(--muted);
-
-            font-size: 14px;
-
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            gap: 16px;
-        }
-
-        .footer-links a {
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--green-light);
-        }
-
-        /* =========================================================
-           SCROLL ANIMATION
-           ========================================================= */
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(25px);
-
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =========================================================
-           LANGUAGE VISIBILITY
-           ========================================================= */
-
-        [data-lang] {
-            transition: opacity 0.15s ease;
-        }
-
-        /* =========================================================
-           TABLET
-           ========================================================= */
-
-        @media (min-width: 600px) {
-            .hero-buttons {
-                flex-direction: row;
-            }
-
-            .hero-buttons .btn {
-                min-width: 230px;
-            }
-
-            .countdown {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .grid-2 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-inner {
-                flex-direction: row;
-                justify-content: space-between;
-
-                text-align: left;
-            }
-        }
-
-        /* =========================================================
-           DESKTOP
-           ========================================================= */
-
-        @media (min-width: 800px) {
-            .desktop-nav {
-                display: flex;
-            }
-
-            .grid-4 {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .hero {
-                min-height: 720px;
-            }
-
-            .language-switcher {
-                margin-left: 8px;
-            }
-        }
-
-        @media (min-width: 1000px) {
-            .header-inner {
-                gap: 30px;
-            }
-        }
-
-        /* =========================================================
-           SMALL MOBILE
-           ========================================================= */
-
-        @media (max-width: 599px) {
-            .desktop-nav {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 25px;
-            }
-
-            .logo-text {
-                font-size: 18px;
-            }
-
-            .hero {
-                padding-top: 65px;
-            }
-
-            section {
-                padding: 60px 0;
-            }
-        }
-
-        /* =========================================================
-           REDUCED MOTION
-           ========================================================= */
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .reveal {
-                opacity: 1;
-                transform: none;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-<!-- =============================================================
-     HEADER
-     ============================================================= -->
 
 <header>
     <div class="container header-inner">
@@ -957,20 +66,19 @@
         <nav class="desktop-nav" aria-label="Основная навигация">
 
             <a href="#about" data-lang="ru">О проекте</a>
-            <a href="#about" data-lang="en" hidden>About</a>
+            <a href="#about" data-lang="en" class="lang-hidden">About</a>
 
             <a href="#features" data-lang="ru">Возможности</a>
-            <a href="#features" data-lang="en" hidden>Features</a>
+            <a href="#features" data-lang="en" class="lang-hidden">Features</a>
 
             <a href="#faq" data-lang="ru">FAQ</a>
-            <a href="#faq" data-lang="en" hidden>FAQ</a>
+            <a href="#faq" data-lang="en" class="lang-hidden">FAQ</a>
 
             <a href="#coming-soon" data-lang="ru">Скоро</a>
-            <a href="#coming-soon" data-lang="en" hidden>Coming soon</a>
+            <a href="#coming-soon" data-lang="en" class="lang-hidden">Coming soon</a>
 
         </nav>
 
-        <!-- Переключатель RU / EN -->
         <div
             class="language-switcher"
             aria-label="Выбор языка"
@@ -1000,10 +108,7 @@
 
 <main>
 
-    <!-- =========================================================
-         HERO
-         ========================================================= -->
-
+    <!-- HERO -->
     <section class="hero">
 
         <div class="container hero-content reveal">
@@ -1015,7 +120,7 @@
                     Будущий Minecraft-портал
                 </span>
 
-                <span data-lang="en" hidden>
+                <span data-lang="en" class="lang-hidden">
                     Future Minecraft portal
                 </span>
             </div>
@@ -1029,7 +134,7 @@
                     — Моды для Minecraft
                 </span>
 
-                <span data-lang="en" hidden>
+                <span data-lang="en" class="lang-hidden">
                     — Minecraft Mods
                 </span>
             </h1>
@@ -1039,17 +144,12 @@
                 Подготовься к новым приключениям!
             </p>
 
-            <p data-lang="en" hidden>
+            <p data-lang="en" class="lang-hidden">
                 Soon you will be able to download Minecraft mods,
                 modpacks and guides here. Get ready for new adventures!
             </p>
 
             <div class="hero-buttons">
-
-                <!-- =================================================
-                     ССЫЛКА НА БУДУЩИЙ САЙТ МОДОВ
-                     Меняй только https://example.com
-                     ================================================= -->
 
                 <a
                     href="https://example.com"
@@ -1060,7 +160,7 @@
                         🚀 Перейти на сайт модов
                     </span>
 
-                    <span data-lang="en" hidden>
+                    <span data-lang="en" class="lang-hidden">
                         🚀 Go to mods website
                     </span>
                 </a>
@@ -1073,7 +173,7 @@
                         Узнать больше ↓
                     </span>
 
-                    <span data-lang="en" hidden>
+                    <span data-lang="en" class="lang-hidden">
                         Learn more ↓
                     </span>
                 </a>
@@ -1085,10 +185,7 @@
     </section>
 
 
-    <!-- =========================================================
-         РЕКЛАМА — TOP
-         ========================================================= -->
-
+    <!-- РЕКЛАМА — TOP -->
     <section class="ad-section">
 
         <div class="container">
@@ -1102,29 +199,17 @@
                 <div class="ad-box-inner">
 
                     <!--
-                        =================================================
-                        MITGO ID — РЕКЛАМНЫЙ КОД
-                        =================================================
+                        Здесь будет код рекламной сети Mitgo ID.
 
-                        Вставь сюда JavaScript-код рекламного блока,
-                        который выдаст Mitgo ID.
-
-                        Например:
-
-                        <script>
-                            // код Mitgo
-                        </script>
-
-                        Не вставляй сюда код верификации сайта.
-                        Здесь находится именно рекламный код.
-                        =================================================
+                        Вставляй сюда именно рекламный код.
+                        Код верификации сайта находится в <head>.
                     -->
 
                     <span data-lang="ru">
                         Место для рекламного блока
                     </span>
 
-                    <span data-lang="en" hidden>
+                    <span data-lang="en" class="lang-hidden">
                         Advertising space
                     </span>
 
@@ -1137,10 +222,7 @@
     </section>
 
 
-    <!-- =========================================================
-         ЧТО БУДЕТ НА ANINCRAFT
-         ========================================================= -->
-
+    <!-- ЧТО БУДЕТ НА ANINCRAFT -->
     <section id="about">
 
         <div class="container">
@@ -1151,7 +233,7 @@
                     Что будет на AninCraft?
                 </h2>
 
-                <h2 data-lang="en" hidden>
+                <h2 data-lang="en" class="lang-hidden">
                     What will be on AninCraft?
                 </h2>
 
@@ -1160,7 +242,7 @@
                     интереснее и разнообразнее.
                 </p>
 
-                <p data-lang="en" hidden>
+                <p data-lang="en" class="lang-hidden">
                     Everything you need to make Minecraft
                     more interesting and exciting.
                 </p>
@@ -1180,7 +262,7 @@
                         Моды
                     </h3>
 
-                    <h3 data-lang="en" hidden>
+                    <h3 data-lang="en" class="lang-hidden">
                         Mods
                     </h3>
 
@@ -1189,7 +271,7 @@
                         с описанием и инструкциями по установке.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         A catalog of interesting Minecraft mods
                         with descriptions and installation guides.
                     </p>
@@ -1207,7 +289,7 @@
                         Сборки
                     </h3>
 
-                    <h3 data-lang="en" hidden>
+                    <h3 data-lang="en" class="lang-hidden">
                         Modpacks
                     </h3>
 
@@ -1216,7 +298,7 @@
                         от выживания до больших приключений.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         Ready-to-play modpacks for different
                         playstyles, from survival to adventures.
                     </p>
@@ -1234,7 +316,7 @@
                         Инструкции
                     </h3>
 
-                    <h3 data-lang="en" hidden>
+                    <h3 data-lang="en" class="lang-hidden">
                         Guides
                     </h3>
 
@@ -1243,7 +325,7 @@
                         настройке Minecraft и решению проблем.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         Simple guides for installing mods,
                         configuring Minecraft and fixing problems.
                     </p>
@@ -1261,7 +343,7 @@
                         Новости
                     </h3>
 
-                    <h3 data-lang="en" hidden>
+                    <h3 data-lang="en" class="lang-hidden">
                         News
                     </h3>
 
@@ -1270,7 +352,7 @@
                         и интересные события из мира игры.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         New mods, Minecraft updates and
                         interesting news from the gaming world.
                     </p>
@@ -1284,10 +366,7 @@
     </section>
 
 
-    <!-- =========================================================
-         РЕКЛАМА — MIDDLE
-         ========================================================= -->
-
+    <!-- РЕКЛАМА — MIDDLE -->
     <section class="ad-section">
 
         <div class="container">
@@ -1306,7 +385,7 @@
                         Место для рекламного блока
                     </span>
 
-                    <span data-lang="en" hidden>
+                    <span data-lang="en" class="lang-hidden">
                         Advertising space
                     </span>
 
@@ -1319,10 +398,7 @@
     </section>
 
 
-    <!-- =========================================================
-         ПОЧЕМУ ANINCRAFT
-         ========================================================= -->
-
+    <!-- ПОЧЕМУ ANINCRAFT -->
     <section
         class="benefits"
         id="features"
@@ -1336,7 +412,7 @@
                     Почему AninCraft?
                 </h2>
 
-                <h2 data-lang="en" hidden>
+                <h2 data-lang="en" class="lang-hidden">
                     Why AninCraft?
                 </h2>
 
@@ -1345,7 +421,7 @@
                     так и для опытных игроков.
                 </p>
 
-                <p data-lang="en" hidden>
+                <p data-lang="en" class="lang-hidden">
                     We want to make the website convenient
                     for both beginners and experienced players.
                 </p>
@@ -1365,7 +441,7 @@
                         Бесплатно
                     </h3>
 
-                    <h3 data-lang="en" hidden>
+                    <h3 data-lang="en" class="lang-hidden">
                         Free
                     </h3>
 
@@ -1374,7 +450,7 @@
                         будут доступны бесплатно.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         Main materials and useful resources
                         will be available for free.
                     </p>
@@ -1392,7 +468,7 @@
                         Безопасно
                     </h3>
 
-                    <h3 data-lang="en" hidden>
+                    <h3 data-lang="en" class="lang-hidden">
                         Safe
                     </h3>
 
@@ -1401,7 +477,7 @@
                         без сомнительных загрузок.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         We aim to provide clear materials
                         without suspicious downloads.
                     </p>
@@ -1419,7 +495,7 @@
                         Быстро
                     </h3>
 
-                    <h3 data-lang="en" hidden>
+                    <h3 data-lang="en" class="lang-hidden">
                         Fast
                     </h3>
 
@@ -1428,7 +504,7 @@
                         к нужной информации.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         No unnecessary clutter — quick access
                         to the information you need.
                     </p>
@@ -1446,7 +522,7 @@
                         Обновления
                     </h3>
 
-                    <h3 data-lang="en" hidden>
+                    <h3 data-lang="en" class="lang-hidden">
                         Updates
                     </h3>
 
@@ -1455,7 +531,7 @@
                         будут появляться регулярно.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         New mods, modpacks and useful materials
                         will be added regularly.
                     </p>
@@ -1469,10 +545,7 @@
     </section>
 
 
-    <!-- =========================================================
-         СКОРО ОТКРЫТИЕ
-         ========================================================= -->
-
+    <!-- СКОРО ОТКРЫТИЕ -->
     <section id="coming-soon">
 
         <div class="container">
@@ -1485,7 +558,7 @@
                         🚀 Скоро открытие
                     </h2>
 
-                    <h2 data-lang="en" hidden>
+                    <h2 data-lang="en" class="lang-hidden">
                         🚀 Coming Soon
                     </h2>
 
@@ -1495,7 +568,7 @@
                         и полезных материалов для Minecraft.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         We are preparing AninCraft.
                         A full catalog of Minecraft mods,
                         modpacks and useful guides will appear here.
@@ -1528,7 +601,7 @@
                         <span
                             class="time-label"
                             data-lang="en"
-                            hidden
+                            class="lang-hidden"
                         >
                             days
                         </span>
@@ -1555,7 +628,7 @@
                         <span
                             class="time-label"
                             data-lang="en"
-                            hidden
+                            class="lang-hidden"
                         >
                             hours
                         </span>
@@ -1582,7 +655,7 @@
                         <span
                             class="time-label"
                             data-lang="en"
-                            hidden
+                            class="lang-hidden"
                         >
                             minutes
                         </span>
@@ -1609,7 +682,7 @@
                         <span
                             class="time-label"
                             data-lang="en"
-                            hidden
+                            class="lang-hidden"
                         >
                             seconds
                         </span>
@@ -1625,10 +698,7 @@
     </section>
 
 
-    <!-- =========================================================
-         FAQ
-         ========================================================= -->
-
+    <!-- FAQ -->
     <section id="faq">
 
         <div class="container">
@@ -1639,7 +709,7 @@
                     Частые вопросы
                 </h2>
 
-                <h2 data-lang="en" hidden>
+                <h2 data-lang="en" class="lang-hidden">
                     Frequently Asked Questions
                 </h2>
 
@@ -1648,7 +718,7 @@
                     на самые популярные вопросы.
                 </p>
 
-                <p data-lang="en" hidden>
+                <p data-lang="en" class="lang-hidden">
                     While the project is being prepared,
                     here are answers to common questions.
                 </p>
@@ -1664,7 +734,7 @@
                         Когда откроется AninCraft?
                     </summary>
 
-                    <summary data-lang="en" hidden>
+                    <summary data-lang="en" class="lang-hidden">
                         When will AninCraft launch?
                     </summary>
 
@@ -1674,7 +744,7 @@
                         полноценный каталог Minecraft-модов.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         We are preparing the project for launch.
                         Stay tuned — a full Minecraft mod catalog
                         will appear here.
@@ -1689,7 +759,7 @@
                         Моды будут бесплатными?
                     </summary>
 
-                    <summary data-lang="en" hidden>
+                    <summary data-lang="en" class="lang-hidden">
                         Will the mods be free?
                     </summary>
 
@@ -1699,7 +769,7 @@
                         материалов будут указаны отдельно.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         The main website materials are planned
                         to be available for free. Specific conditions
                         will be listed separately.
@@ -1714,7 +784,7 @@
                         Для каких версий Minecraft будут моды?
                     </summary>
 
-                    <summary data-lang="en" hidden>
+                    <summary data-lang="en" class="lang-hidden">
                         Which Minecraft versions will be supported?
                     </summary>
 
@@ -1724,7 +794,7 @@
                         совместимая версия.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         Popular Minecraft versions are planned
                         to be supported. Each mod will show
                         its compatible version.
@@ -1739,7 +809,7 @@
                         Можно ли предложить свой мод?
                     </summary>
 
-                    <summary data-lang="en" hidden>
+                    <summary data-lang="en" class="lang-hidden">
                         Can I submit my own mod?
                     </summary>
 
@@ -1748,7 +818,7 @@
                         способ предложить материал для публикации.
                     </p>
 
-                    <p data-lang="en" hidden>
+                    <p data-lang="en" class="lang-hidden">
                         Yes. After launch, there will be a convenient
                         way to submit content for publication.
                     </p>
@@ -1762,10 +832,7 @@
     </section>
 
 
-    <!-- =========================================================
-         РЕКЛАМА — BOTTOM
-         ========================================================= -->
-
+    <!-- РЕКЛАМА — BOTTOM -->
     <section class="ad-section">
 
         <div class="container">
@@ -1784,9 +851,165 @@
                         Место для рекламного блока
                     </span>
 
-                    <span data-lang="en" hidden>
+                    <span data-lang="en" class="lang-hidden">
                         Advertising space
                     </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- АНОНИМНЫЕ КОММЕНТАРИИ -->
+    <section id="comments">
+
+        <div class="container">
+
+            <div class="section-heading reveal">
+
+                <h2 data-lang="ru">
+                    Комментарии
+                </h2>
+
+                <h2 data-lang="en" class="lang-hidden">
+                    Comments
+                </h2>
+
+                <p data-lang="ru">
+                    Оставьте сообщение без регистрации.
+                    Имя можно не указывать.
+                </p>
+
+                <p data-lang="en" class="lang-hidden">
+                    Leave a message without registration.
+                    A name is optional.
+                </p>
+
+            </div>
+
+
+            <div class="comments-layout">
+
+                <form
+                    class="card comments-form reveal"
+                    id="comment-form"
+                >
+
+                    <div class="form-field">
+
+                        <label for="comment-name">
+
+                            <span data-lang="ru">
+                                Имя
+                            </span>
+
+                            <span data-lang="en" class="lang-hidden">
+                                Name
+                            </span>
+
+                            <small data-lang="ru">
+                                необязательно
+                            </small>
+
+                            <small data-lang="en" class="lang-hidden">
+                                optional
+                            </small>
+
+                        </label>
+
+                        <input
+                            id="comment-name"
+                            name="name"
+                            type="text"
+                            maxlength="60"
+                            autocomplete="name"
+                            placeholder="Аноним"
+                            data-placeholder-ru="Аноним"
+                            data-placeholder-en="Anonymous"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="comment-text">
+
+                            <span data-lang="ru">
+                                Комментарий
+                            </span>
+
+                            <span data-lang="en" class="lang-hidden">
+                                Comment
+                            </span>
+
+                        </label>
+
+                        <textarea
+                            id="comment-text"
+                            name="comment"
+                            rows="5"
+                            maxlength="1000"
+                            required
+                            data-placeholder-ru="Напишите комментарий..."
+                            data-placeholder-en="Write a comment..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <p
+                        class="form-error"
+                        id="comment-error"
+                        role="alert"
+                        aria-live="polite"
+                    ></p>
+
+
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                    >
+
+                        <span data-lang="ru">
+                            Отправить
+                        </span>
+
+                        <span data-lang="en" class="lang-hidden">
+                            Send
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+                <div class="comments-list-wrap">
+
+                    <div
+                        class="comments-list"
+                        id="comments-list"
+                        aria-live="polite"
+                    ></div>
+
+                    <p
+                        class="comments-empty card"
+                        id="comments-empty"
+                    >
+
+                        <span data-lang="ru">
+                            Пока комментариев нет. Будьте первым!
+                        </span>
+
+                        <span data-lang="en" class="lang-hidden">
+                            No comments yet. Be the first!
+                        </span>
+
+                    </p>
 
                 </div>
 
@@ -1799,10 +1022,7 @@
 </main>
 
 
-<!-- =============================================================
-     FOOTER
-     ============================================================= -->
-
+<!-- FOOTER -->
 <footer>
 
     <div class="container footer-inner">
@@ -1824,7 +1044,7 @@
             <a
                 href="#"
                 data-lang="en"
-                hidden
+                class="lang-hidden"
             >
                 Privacy Policy
             </a>
@@ -1840,410 +1060,7 @@
 </footer>
 
 
-<script>
-    /*
-    ================================================================
-    ANINCRAFT
-    Основной JavaScript
-    ================================================================
-    */
-
-
-    /* ================================================================
-       1. ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА RU / EN
-       ================================================================ */
-
-    const languageButtons = {
-        ru: document.getElementById("lang-ru"),
-        en: document.getElementById("lang-en")
-    };
-
-    function setLanguage(language) {
-
-        if (language !== "ru" && language !== "en") {
-            language = "ru";
-        }
-
-        document.documentElement.lang = language;
-
-        /*
-         * Показываем элементы выбранного языка
-         * и скрываем элементы другого языка.
-         */
-
-        document.querySelectorAll("[data-lang]").forEach(element => {
-
-            if (element.getAttribute("data-lang") === language) {
-                element.hidden = false;
-            } else {
-                element.hidden = true;
-            }
-
-        });
-
-
-        /*
-         * Активная кнопка языка
-         */
-
-        languageButtons.ru.classList.toggle(
-            "active",
-            language === "ru"
-        );
-
-        languageButtons.en.classList.toggle(
-            "active",
-            language === "en"
-        );
-
-
-        /*
-         * Сохраняем выбор пользователя.
-         * При следующем посещении сайт откроется
-         * на выбранном языке.
-         */
-
-        localStorage.setItem(
-            "anincraft_language",
-            language
-        );
-    }
-
-
-    /*
-     * Кнопка RU
-     */
-
-    languageButtons.ru.addEventListener(
-        "click",
-        () => setLanguage("ru")
-    );
-
-
-    /*
-     * Кнопка EN
-     */
-
-    languageButtons.en.addEventListener(
-        "click",
-        () => setLanguage("en")
-    );
-
-
-    /*
-     * Получаем сохранённый язык.
-     */
-
-    const savedLanguage =
-        localStorage.getItem("anincraft_language");
-
-
-    /*
-     * Если язык уже выбирался — используем его.
-     * Если нет — русский.
-     */
-
-    setLanguage(
-        savedLanguage === "en"
-            ? "en"
-            : "ru"
-    );
-
-
-    /* ================================================================
-       2. ТАЙМЕР
-       ================================================================
-
-       Дата открытия:
-       1 октября 2026 года.
-
-       Если хочешь изменить дату, поменяй только эту строку.
-
-       Например:
-
-       new Date("2026-11-01T00:00:00")
-
-       ================================================================ */
-
-    const openingDate =
-        new Date("2026-10-01T00:00:00").getTime();
-
-
-    const countdown =
-        document.getElementById("countdown");
-
-    const daysElement =
-        document.getElementById("days");
-
-    const hoursElement =
-        document.getElementById("hours");
-
-    const minutesElement =
-        document.getElementById("minutes");
-
-    const secondsElement =
-        document.getElementById("seconds");
-
-
-    function updateCountdown() {
-
-        const currentTime =
-            Date.now();
-
-        const difference =
-            openingDate - currentTime;
-
-
-        /*
-         * Если дата уже наступила.
-         */
-
-        if (difference <= 0) {
-
-            countdown.innerHTML = `
-                <div
-                    class="time-box"
-                    style="grid-column: 1 / -1;"
-                >
-                    <span
-                        class="time-number"
-                        style="font-size: 34px;"
-                    >
-                        🚀
-                    </span>
-
-                    <span
-                        class="time-label"
-                        data-lang="ru"
-                    >
-                        AninCraft уже открывается!
-                    </span>
-
-                    <span
-                        class="time-label"
-                        data-lang="en"
-                    >
-                        AninCraft is launching!
-                    </span>
-                </div>
-            `;
-
-            /*
-             * Повторно применяем текущий язык
-             * к созданным элементам.
-             */
-
-            const currentLanguage =
-                localStorage.getItem(
-                    "anincraft_language"
-                ) || "ru";
-
-            setLanguage(currentLanguage);
-
-            return;
-        }
-
-
-        /*
-         * Расчёт времени.
-         */
-
-        const days =
-            Math.floor(
-                difference /
-                (1000 * 60 * 60 * 24)
-            );
-
-        const hours =
-            Math.floor(
-                (difference /
-                    (1000 * 60 * 60)) % 24
-            );
-
-        const minutes =
-            Math.floor(
-                (difference /
-                    (1000 * 60)) % 60
-            );
-
-        const seconds =
-            Math.floor(
-                (difference / 1000) % 60
-            );
-
-
-        /*
-         * Выводим числа с ведущим нулём.
-         */
-
-        daysElement.textContent =
-            String(days).padStart(2, "0");
-
-        hoursElement.textContent =
-            String(hours).padStart(2, "0");
-
-        minutesElement.textContent =
-            String(minutes).padStart(2, "0");
-
-        secondsElement.textContent =
-            String(seconds).padStart(2, "0");
-    }
-
-
-    updateCountdown();
-
-    setInterval(
-        updateCountdown,
-        1000
-    );
-
-
-    /* ================================================================
-       3. АНИМАЦИЯ ПРИ СКРОЛЛЕ
-       ================================================================ */
-
-    const revealElements =
-        document.querySelectorAll(".reveal");
-
-
-    /*
-     * Если браузер поддерживает IntersectionObserver,
-     * запускаем красивое появление элементов.
-     */
-
-    if ("IntersectionObserver" in window) {
-
-        const observer =
-            new IntersectionObserver(
-                (entries, observerInstance) => {
-
-                    entries.forEach(entry => {
-
-                        if (entry.isIntersecting) {
-
-                            entry.target.classList.add(
-                                "visible"
-                            );
-
-                            observerInstance.unobserve(
-                                entry.target
-                            );
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-
-        revealElements.forEach(element => {
-
-            observer.observe(element);
-
-        });
-
-    } else {
-
-        /*
-         * Запасной вариант для старых браузеров.
-         */
-
-        revealElements.forEach(element => {
-
-            element.classList.add(
-                "visible"
-            );
-
-        });
-
-    }
-
-
-    /* ================================================================
-       4. ПЛАВНАЯ ПРОКРУТКА К ЯКОРЯМ
-       ================================================================ */
-
-    document
-        .querySelectorAll('a[href^="#"]')
-        .forEach(link => {
-
-            link.addEventListener(
-                "click",
-                function(event) {
-
-                    const targetId =
-                        this.getAttribute("href");
-
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
-                        return;
-                    }
-
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-
-                    if (target) {
-
-                        event.preventDefault();
-
-                        target.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start"
-                        });
-
-                    }
-
-                }
-            );
-
-        });
-
-
-    /* ================================================================
-       5. НАСТРОЙКА ССЫЛКИ НА БУДУЩИЙ САЙТ МОДОВ
-       ================================================================
-
-       Сейчас:
-
-       https://example.com
-
-       Когда появится настоящий сайт модов,
-       достаточно заменить URL у элемента:
-
-       id="mods-link"
-
-       ================================================================ */
-
-    const modsLink =
-        document.getElementById("mods-link");
-
-
-    /*
-     * ВАЖНО:
-     *
-     * Не меняй этот код, пока будущего сайта нет.
-     *
-     * Когда сайт будет готов:
-     *
-     * modsLink.href = "https://твой-настоящий-сайт.ru";
-     *
-     * ================================================================
-     */
-
-
-    /* ================================================================
-       ГОТОВО
-       ================================================================ */
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
